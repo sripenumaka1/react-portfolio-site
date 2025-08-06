@@ -1,0 +1,247 @@
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  background: #F7F7F7;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroSection {
+  width: 100%;
+  padding: 80px 5vw 60px 5vw;
+  background: white;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contactSection {
+  width: 100%;
+  padding: 80px 5vw;
+  flex: 1;
+}
+
+.contactContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+}
+
+.description {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.7);
+  line-height: 1.6;
+  margin: 0 0 48px 0;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contactIcon {
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.contactLabel {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin: 0 0 4px 0;
+}
+
+.contactValue {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactValue:hover {
+  color: #85918B;
+}
+
+.contactForm {
+  background: white;
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A1A1A;
+}
+
+.input,
+.textarea {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  padding: 12px 16px;
+  border: 1px solid rgba(191, 191, 191, 0.3);
+  border-radius: 6px;
+  background: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #85918B;
+  box-shadow: 0 0 0 3px rgba(133, 145, 139, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitButton {
+  background: #1A1A1A;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  align-self: flex-start;
+}
+
+.submitButton:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .heroSection {
+    padding: 60px 5vw 40px 5vw;
+  }
+  
+  .contactSection {
+    padding: 60px 5vw;
+  }
+  
+  .contactForm {
+    padding: 32px 24px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 40px 20px;
+  }
+  
+  .contactSection {
+    padding: 40px 20px;
+  }
+  
+  .contactForm {
+    padding: 24px 16px;
+  }
+  
+  .contactItem {
+    gap: 12px;
+  }
+  
+  .contactIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}

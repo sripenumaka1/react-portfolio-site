@@ -1,0 +1,196 @@
+.body {
+  width: 100%;
+  background: #F7F7F7;
+  font-family: "Open Sans", sans-serif;
+  color: #1A1A1A;
+}
+
+.header {
+  width: 100%;
+  height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 96px;
+  position: fixed;
+  top: 0;
+  background: #F7F7F7;
+  z-index: 999;
+}
+
+.logoBox {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 49px;
+  height: 46px;
+  margin-right: 12px;
+}
+
+.brand {
+  font-family: "Rubik", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.6px;
+}
+
+.nav ul {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav li {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+}
+
+.hero {
+  height: 561px;
+  background: url("../assets/hero.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  padding: 0 96px;
+  margin-top: 96px;
+}
+
+.heroContent {
+  max-width: 555px;
+  color: white;
+  text-shadow: 7px 7px 0.2px rgba(0, 0, 0, 0.25);
+}
+
+.heroContent h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 48px;
+  letter-spacing: 0.1em;
+  line-height: 47px;
+}
+
+.heroContent button {
+  margin-top: 32px;
+  background: #1A1A1A;
+  color: #F7F7F7;
+  border: none;
+  padding: 12px 24px;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+}
+
+.projects {
+  padding: 80px 96px;
+  background: white;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 30px;
+  font-family: "Rubik", sans-serif;
+}
+
+.projects p {
+  max-width: 645px;
+  margin: 12px auto 48px;
+  font-size: 16px;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.projectGrid {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.projectCard {
+  width: 600px;
+  text-align: left;
+}
+
+.projectCard img {
+  width: 100%;
+  height: auto;
+}
+
+.projectCard h3 {
+  margin-top: 16px;
+  font-family: "Rubik", sans-serif;
+  font-size: 20px;
+}
+
+.projectCard p {
+  font-size: 16px;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.projectCard a {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  color: #1A1A1A;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.cta {
+  padding: 96px;
+  background: #F7F7F7;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 36px;
+  font-family: "Rubik", sans-serif;
+}
+
+.cta p {
+  font-size: 18px;
+  color: rgba(26, 26, 26, 0.8);
+  margin: 16px 0 32px;
+  font-family: "Manrope", sans-serif;
+}
+
+.cta button {
+  background: #1A1A1A;
+  color: #F7F7F7;
+  border: none;
+  padding: 12px 32px;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer {
+  background: white;
+  padding: 48px 96px;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.footerContent div {
+  max-width: 350px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer li {
+  margin: 6px 0;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(26, 26, 26, 0.5);
+}

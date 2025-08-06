@@ -1,0 +1,275 @@
+/* Project Details Layout */
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #F7F7F7;
+  border-radius: 8px;
+  outline: 2px #CED4DA solid;
+  outline-offset: -2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.headerBar {
+  width: 100%;
+  height: 76px;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+}
+.headerContent {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+.headerTitle {
+  color: #1A1A1A;
+  font-size: 18px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+}
+.heroSection {
+  width: 100%;
+  padding: 64px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.projectTitle {
+  color: #1A1A1A;
+  font-size: 60px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 60px;
+  text-align: center;
+}
+.projectSubtitle {
+  color: #BFBFBF;
+  font-size: 20px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: center;
+  margin-top: 22px;
+}
+.imageSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 0 0;
+}
+.imageWrapper {
+  width: 100%;
+  max-width: 976px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 32px;
+  overflow: visible;
+}
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+.projectImageCropTop {
+  object-position: center 20%;
+}
+.projectImageCropBottom {
+  object-position: center 0%;
+}
+.infoSection {
+  width: 896px;
+  margin: 64px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+.infoLeft {
+  flex: 1;
+}
+.infoBlock {
+  margin-bottom: 32px;
+}
+.infoLabel {
+  color: #1A1A1A;
+  font-size: 20px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+}
+.infoValue {
+  color: #4B5563;
+  font-size: 18px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  margin-top: 12px;
+}
+.toolsRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.toolTag {
+  background: #1A1A1A;
+  color: white;
+  font-size: 14px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  border-radius: 9999px;
+  padding: 8px 24px;
+  display: inline-block;
+}
+.infoRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 16px 0;
+}
+.infoSmallLabel {
+  color: #4B5563;
+  font-size: 16px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+}
+.infoSmallValue {
+  color: #1A1A1A;
+  font-size: 16px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+}
+.descriptionSection {
+  width: 896px;
+  margin: 40px auto 0 auto;
+}
+.descriptionText {
+  color: rgba(26, 26, 26, 0.90);
+  font-size: 20px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 25px;
+}
+.demoSection {
+  width: 896px;
+  margin: 64px auto 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.demoBtn {
+  background: #1A1A1A;
+  color: white;
+  font-size: 18px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  border-radius: 9999px;
+  padding: 16px 48px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.demoBtn:hover {
+  background: #3B82F6;
+}
+.projectNavSection {
+  width: 896px;
+  margin: 40px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.projectNavPrev, .projectNavNext {
+  color: #BFBFBF;
+  font-size: 16px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.projectNavNext {
+  color: #1A1A1A;
+}
+.projectNavPrev:hover, .projectNavNext:hover {
+  color: #3B82F6;
+}
+.backLink {
+  color: #4B5563;
+  font-size: 16px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  padding-left: 4px;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+.backLink:hover {
+  color: #1A1A1A;
+  text-decoration: underline;
+}
+@media (max-width: 1000px) {
+  .infoSection, .descriptionSection, .demoSection, .projectNavSection {
+    width: 98vw;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .imageWrapper {
+    width: 98vw;
+    min-width: 0;
+    max-width: 98vw;
+    height: 220px;
+  }
+  .projectImage {
+    width: 90vw;
+    height: 220px;
+    border-radius: 32px;
+  }
+}
+@media (max-width: 600px) {
+  .projectTitle {
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .projectSubtitle {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .infoSection {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .imageWrapper {
+    height: 140px;
+  }
+  .projectImage {
+    height: 140px;
+  }
+  .descriptionText {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .demoBtn {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+}
