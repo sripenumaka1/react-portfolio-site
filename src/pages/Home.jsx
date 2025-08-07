@@ -331,7 +331,7 @@ export default function Home() {
                 margin: "0 0 32px 0",
               }}
             >
-              A selection of my recent work showcasing minimal design principles and thoughtful user experiences.
+              A selection of my recent work showcasing minimal design principles and thoughtful user experiences!
             </p>
             <motion.div
               variants={cardContainerVariants}
