@@ -280,7 +280,7 @@ export default function Home() {
             }}
             onClick={() => window.location.href = '/portfolio'}
           >
-            Explore My Work
+            Explore My Work!
           </motion.button>
         </div>
       </section>
