@@ -1,26 +1,27 @@
-name: FTP Deploy
-
-on:
+on: 
   push:
-    branches:
-      - deploy
-
+    branches: [ deploy ]
+name: 🚀 Deploy website on push
 jobs:
-  ftp-deploy:
+  web-deploy:
+    name: 🚀 Deploy React
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Build React App
+      - name: Get latest code
+        uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: ⛏️Build Project
         run: |
           npm install
           npm run build
-
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 📁 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build
+          local-dir: "dist/"
+          server-dir: "public_html/"
