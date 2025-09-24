@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import './Portfolio.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRef } from 'react';
+import ScrollReveal from "../components/ScrollReveal";
 import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiCss3, SiHtml5 } from 'react-icons/si';
 import { Link } from 'react-router-dom';
+import { usePerformanceMonitor } from '../utils/performance';
+import LoadingBar from '../components/LoadingBar';
 import lumoraImg from '../assets/images/lumora3.png';
 import sskdImg from '../assets/images/sskd.png';
 import floatingGokuImg from '../assets/images/floating-goku.png';
@@ -62,33 +64,10 @@ const techStack = [
 
 const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags)))];
 
-function FadeInSection({ children, ...props }) {
-  const ref = useRef();
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => { if (ref.current) observer.unobserve(ref.current); };
-  }, []);
-
-  return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7 }}
-      {...props}
-    >
-      {children}
-    </motion.section>
-  );
-}
+// Use global ScrollReveal
 
 const Portfolio = () => {
+  const { isLoading } = usePerformanceMonitor('Portfolio');
   const [selectedTag, setSelectedTag] = useState('All');
   const filteredProjects = selectedTag === 'All'
     ? projects
@@ -96,7 +75,8 @@ const Portfolio = () => {
 
   return (
     <div className="container">
-      <FadeInSection>
+      <LoadingBar isLoading={isLoading} />
+      <ScrollReveal>
         {/* Hero Section */}
         <section className="heroSection">
           <div className="codingBg">
@@ -118,10 +98,10 @@ const Portfolio = () => {
             </p>
           </motion.div>
         </section>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* Technical Expertise Section */}
-      <FadeInSection>
+      <ScrollReveal>
         <section className="techSection">
           <h2 className="techTitle">Technical Expertise</h2>
           <div className="techGrid">
@@ -129,8 +109,19 @@ const Portfolio = () => {
               <motion.div
                 className="techCard"
                 key={tech.name}
-                whileHover={{ scale: 1.08, rotate: 2 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ 
+                  scale: 1.15,
+                  rotate: [0, -10, 10, -5, 5, 0],
+                  transition: {
+                    duration: 0.4,
+                    rotate: {
+                      duration: 0.6,
+                      repeat: 0,
+                      ease: "easeInOut"
+                    }
+                  }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
                 <div className="techIcon" style={{ backgroundColor: tech.color }}>{tech.icon}</div>
                 <span className="techName">{tech.name}</span>
@@ -138,10 +129,10 @@ const Portfolio = () => {
             ))}
           </div>
         </section>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* Filter Bar */}
-      <FadeInSection>
+      <ScrollReveal>
         <div className="portfolioFilterBar">
           {allTags.map(tag => (
             <button
@@ -153,10 +144,10 @@ const Portfolio = () => {
             </button>
           ))}
         </div>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* Projects Grid */}
-      <FadeInSection>
+      <ScrollReveal>
         <section className="projectsSection">
           <h2 className="projectsTitle">My Portfolio</h2>
           <div className="projectsGrid landscape">
@@ -170,7 +161,17 @@ const Portfolio = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 40 }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  whileHover={{ scale: 1.04, boxShadow: '0 10px 40px rgba(0,0,0,0.15)' }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    rotateY: 5,
+                    rotateX: -2,
+                    translateZ: "20px",
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px"
+                  }}
                 >
                   <Link to={project.link} style={{ textDecoration: 'none', display: 'flex', width: '100%', height: '100%' }}>
                     <div className="projectImage landscape" style={project.imageStyle}>
@@ -203,10 +204,10 @@ const Portfolio = () => {
             </AnimatePresence>
           </div>
         </section>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* CTA Section */}
-      <FadeInSection>
+      <ScrollReveal>
         <section className="ctaSection">
           <div className="ctaContent">
             <h2 className="ctaTitle">Let's Create Something Amazing Together</h2>
@@ -239,7 +240,7 @@ const Portfolio = () => {
             </div>
           </div>
         </section>
-      </FadeInSection>
+      </ScrollReveal>
     </div>
   );
 };

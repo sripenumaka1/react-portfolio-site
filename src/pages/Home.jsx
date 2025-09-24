@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ScrollReveal from "../components/ScrollReveal";
 import { Link } from "react-router-dom";
 // import heroImg from '../assets/images/hero.jpg'; // Remove static image
 import lumoraImg from '../assets/images/lumora.jpg';
 import sskdImg from '../assets/images/sskd.png';
 import { useRef } from 'react';
 import { FaCode, FaPaintBrush, FaReact } from 'react-icons/fa';
+import { usePerformanceMonitor } from '../utils/performance';
+import LoadingBar from '../components/LoadingBar';
 
 
 const heroVariants = {
@@ -65,40 +68,19 @@ function Typewriter({ text, speed = 80, ...props }) {
   return <span {...props}>{displayed}{!done && <span className="type-cursor">|</span>}</span>;
 }
 
-function FadeInSection({ children, ...props }) {
-  const ref = useRef();
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => { if (ref.current) observer.unobserve(ref.current); };
-  }, []);
-
-  return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7 }}
-      {...props}
-    >
-      {children}
-    </motion.section>
-  );
-}
+// Use global ScrollReveal component instead of local implementation
 
 export default function Home() {
   const [showName, setShowName] = useState(false);
+  const { isLoading } = usePerformanceMonitor('Home');
+  
   useEffect(() => {
     const timer = setTimeout(() => setShowName(true), 700); // match fade-in duration of Hi I'm
     return () => clearTimeout(timer);
   }, []);
   return (
     <>
+      <LoadingBar isLoading={isLoading} />
       <section
         style={{
           width: "100vw",
@@ -113,6 +95,7 @@ export default function Home() {
           marginBottom: 32,
           overflow: "hidden",
           background: "#fff",
+          zIndex: 1,
         }}
       >
         {/* Floating particles across the whole hero section */}
@@ -298,7 +281,7 @@ export default function Home() {
           boxSizing: "border-box",
         }}
       >
-        <FadeInSection>
+        <ScrollReveal>
           {/* Featured Projects Section */}
           <section
             style={{
@@ -307,6 +290,8 @@ export default function Home() {
               margin: "0 auto 48px auto",
               padding: "0 5vw",
               boxSizing: "border-box",
+              position: "relative",
+              zIndex: 1,
             }}
           >
             <h2
@@ -477,10 +462,10 @@ export default function Home() {
               </Link>
             </motion.div>
           </section>
-        </FadeInSection>
+        </ScrollReveal>
 
               {/* CTA Section */}
-        <FadeInSection>
+        <ScrollReveal>
           <section
             style={{
               width: "100vw",
@@ -492,6 +477,8 @@ export default function Home() {
               textAlign: "center",
               borderTop: "1px solid rgba(0,0,0,0.05)",
               borderBottom: "1px solid rgba(0,0,0,0.05)",
+              position: "relative",
+              zIndex: 1,
             }}
           >
             <div
@@ -544,7 +531,7 @@ export default function Home() {
               </motion.button>
             </div>
           </section>
-        </FadeInSection>
+        </ScrollReveal>
       </div>
     </>
   );

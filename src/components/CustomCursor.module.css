@@ -1,0 +1,74 @@
+.cursor {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+}
+
+.cursor::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: #1A1A1A;
+  clip-path: polygon(
+    0% 0%,    /* top-left */
+    50% 0%,   /* top-middle */
+    100% 50%, /* right-middle */
+    50% 100%, /* bottom-middle */
+    0% 100%,  /* bottom-left */
+    30% 50%   /* left-middle */
+  );
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cursor::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #85918B;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Hover animation */
+.cursorHover::before {
+  background: #bfa14a;
+  transform: rotate(-45deg) scale(1.2);
+}
+
+.cursorHover::after {
+  opacity: 1;
+}
+
+/* Click animation */
+.cursorClick::before {
+  transform: rotate(-45deg) scale(0.9);
+}
+
+/* Hide on mobile/touch devices */
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* Hide default cursor on interactive elements */
+:global(a), 
+:global(button),
+:global(input),
+:global(textarea),
+:global([role="button"]),
+:global(.clickable) {
+  cursor: none !important;
+}

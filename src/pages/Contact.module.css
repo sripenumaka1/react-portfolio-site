@@ -18,6 +18,8 @@
   padding: 80px 5vw 60px 5vw;
   background: white;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .heroContent {
@@ -47,6 +49,9 @@
   width: 100%;
   padding: 80px 5vw;
   flex: 1;
+  position: relative;
+  z-index: 1;
+  background: #F7F7F7;
 }
 
 .contactContent {

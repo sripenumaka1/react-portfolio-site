@@ -146,6 +146,8 @@
     background: #F7F7F7;
     padding: 60px 336px;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .techTitle {
@@ -163,6 +165,8 @@
     gap: 16px;
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .techCard {
@@ -561,6 +565,9 @@
   transition: box-shadow 0.3s, transform 0.3s;
   cursor: pointer;
   position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  backface-visibility: hidden;
 }
 
 .projectImage.landscape {

@@ -1,0 +1,27 @@
+.loadingBarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.loadingBar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #85918B, #bfa14a);
+  transform-origin: left;
+  transition: transform 0.2s ease-out;
+}
+
+.loadingBarComplete {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

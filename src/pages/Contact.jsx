@@ -1,35 +1,12 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
-
-function FadeInSection({ children, ...props }) {
-  const ref = useRef();
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => { if (ref.current) observer.unobserve(ref.current); };
-  }, []);
-
-  return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7 }}
-      {...props}
-    >
-      {children}
-    </motion.section>
-  );
-}
+import ScrollReveal from "../components/ScrollReveal";
+import { usePerformanceMonitor } from '../utils/performance';
+import LoadingBar from '../components/LoadingBar';
 
 const Contact = () => {
+  const { isLoading } = usePerformanceMonitor('Contact');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
@@ -65,9 +42,10 @@ const Contact = () => {
 
   return (
     <div className={styles.container}>
+      <LoadingBar isLoading={isLoading} />
       
       <main className={styles.main}>
-        <FadeInSection className={styles.heroSection}>
+        <ScrollReveal className={styles.heroSection}>
           <div className={styles.heroContent}>
             <h1 className={styles.title}>Let's Work Together</h1>
             <p className={styles.subtitle}>
@@ -75,9 +53,9 @@ const Contact = () => {
               Let's create something meaningful together.
             </p>
           </div>
-        </FadeInSection>
+        </ScrollReveal>
 
-        <FadeInSection className={styles.contactSection}>
+        <ScrollReveal className={styles.contactSection}>
           <div className={styles.contactContent}>
             <div className={styles.contactInfo}>
               <h2 className={styles.sectionTitle}>Get In Touch</h2>
@@ -175,7 +153,7 @@ const Contact = () => {
               </form>
             )}
           </div>
-        </FadeInSection>
+        </ScrollReveal>
       </main>
 
     </div>

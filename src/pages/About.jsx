@@ -2,36 +2,15 @@ import React from "react";
 import styles from './About.module.css';
 import profileImg from '../assets/images/profile.jpg';
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import ScrollReveal from "../components/ScrollReveal";
 import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell } from 'react-icons/fa';
+import { usePerformanceMonitor } from '../utils/performance';
+import LoadingBar from '../components/LoadingBar';
 
-function FadeInSection({ children, ...props }) {
-  const ref = useRef();
-  const [inView, setInView] = React.useState(false);
-
-  React.useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => { if (ref.current) observer.unobserve(ref.current); };
-  }, []);
-
-  return (
-    <motion.section
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7 }}
-      {...props}
-    >
-      {children}
-    </motion.section>
-  );
-}
+// Use global ScrollReveal
 
 const About = () => {
+  const { isLoading } = usePerformanceMonitor('About');
   const personalStack = [
     { name: 'Basketball', icon: <FaBasketballBall />, color: '#183153' },
     { name: 'Soccer', icon: <FaFutbol />, color: '#183153' },
@@ -53,7 +32,8 @@ const About = () => {
 
   return (
     <div className={styles.container}>
-      <FadeInSection className={styles.aboutSection}>
+      <LoadingBar isLoading={isLoading} />
+      <ScrollReveal contentClassName={styles.aboutSection}>
         <div className={styles.aboutIconsBg}>
           {aboutIcons.map((item, i) => (
             <span
@@ -102,10 +82,10 @@ const About = () => {
             Outside of coding, I love playing sports like <b>basketball</b> and <b>soccer</b>, lifting weights at the <b>gym</b>, and listening to or making <b>music</b>. These activities keep me energized, creative, and balanced.
           </p>
         </div>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* Core Values Section */}
-      <FadeInSection className={styles.coreValues}>
+      <ScrollReveal contentClassName={styles.coreValues}>
         <h2 className={styles.coreValuesTitle}>Core Values</h2>
         <div className={styles.valuesGrid}>
           <div className={styles.valueCard}>
@@ -151,10 +131,10 @@ const About = () => {
             </p>
           </div>
         </div>
-      </FadeInSection>
+      </ScrollReveal>
 
       {/* CTA Section */}
-      <FadeInSection className={styles.ctaSection}
+      <ScrollReveal contentClassName={styles.ctaSection}
         style={{
           width: "100vw",
           marginLeft: "calc(-50vw + 50%)",
@@ -165,6 +145,8 @@ const About = () => {
           textAlign: "center",
           borderTop: "1px solid rgba(0,0,0,0.05)",
           borderBottom: "1px solid rgba(0,0,0,0.05)",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div
@@ -256,7 +238,7 @@ const About = () => {
             </a>
           </div>
         </div>
-      </FadeInSection>
+      </ScrollReveal>
     </div>
   );
 };

@@ -72,15 +72,25 @@
   font-weight: 500;
 }
 
-.navLink.active::after {
+/* Animated underline microinteraction */
+.navLink::after {
   content: '';
   position: absolute;
-  bottom: -8px;
   left: 0;
   right: 0;
+  bottom: -8px;
   height: 2px;
   background: #85918B;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.22,1,0.36,1);
+  will-change: transform;
   border-radius: 1px;
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  transform: scaleX(1);
 }
 
 /* Mobile responsiveness */

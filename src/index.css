@@ -18,6 +18,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  position: relative;
+  z-index: 1; /* ensures content is above global background */
 }
 
 .main-content {
