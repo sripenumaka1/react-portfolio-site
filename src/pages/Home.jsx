@@ -242,7 +242,7 @@ export default function Home() {
               maxWidth: 600,
             }}
           >
-            Designing clean, intuitive, and purposeful experiences.
+            Designing clean, intuitive, & purposeful experiences.
           </motion.div>
           <motion.button
             initial={{ opacity: 0, y: 40 }}
