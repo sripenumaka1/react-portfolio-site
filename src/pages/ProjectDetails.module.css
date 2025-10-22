@@ -92,9 +92,10 @@
 .infoSection {
   width: 896px;
   margin: 64px auto 0 auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
+  align-items: start;
 }
 .infoLeft {
   flex: 1;
@@ -233,6 +234,7 @@
     min-width: 0;
     max-width: 98vw;
   }
+  .infoSection { grid-template-columns: 1fr; }
   .imageWrapper {
     width: 98vw;
     min-width: 0;
@@ -254,10 +256,7 @@
     font-size: 16px;
     line-height: 22px;
   }
-  .infoSection {
-    flex-direction: column;
-    gap: 24px;
-  }
+  
   .imageWrapper {
     height: 140px;
   }

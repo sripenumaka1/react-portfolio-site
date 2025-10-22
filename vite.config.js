@@ -5,7 +5,7 @@ import { resolve, join } from 'node:path'
 
 // Build to /docs for GitHub Pages and create 404.html fallback for SPA routing
 export default defineConfig({
-  base: './', // works when hosted at username.github.io/repo-name
+  base: './', 
   plugins: [
     react(),
     {

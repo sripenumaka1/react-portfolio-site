@@ -34,7 +34,12 @@ const cardContainerVariants = {
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-  hover: { y: -8, boxShadow: "0 8px 32px rgba(0,0,0,0.10)", scale: 1.03 },
+  hover: {
+    y: -8,
+    rotateX: 6,
+    rotateY: -6,
+    boxShadow: "0 12px 42px rgba(0,0,0,0.18), 0 0 36px rgba(191,169,122,0.62), 0 0 96px rgba(191,169,122,0.34)",
+  },
 };
 
 const accentBrown = '#8B5C2A'; 
@@ -330,10 +335,19 @@ export default function Home() {
               }}
             >
               {/* Project 1: Lumora */}
-              <Link to="/lumora" style={{textDecoration: 'none'}}>
+              <Link to="/lumora" style={{textDecoration: 'none', perspective: 1000}}>
                 <motion.div
                   variants={cardVariants}
                   whileHover="hover"
+                  animate={{
+                    y: [0, -10, 0],
+                    boxShadow: [
+                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)",
+                      "0 10px 34px rgba(0,0,0,0.14), 0 0 40px rgba(191,169,122,0.60), 0 0 82px rgba(191,169,122,0.32)",
+                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)"
+                    ],
+                  }}
+                  transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
                   style={{
                     background: "white",
                     borderRadius: 8,
@@ -341,7 +355,8 @@ export default function Home() {
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    minHeight: 350,
+                    height: 420,
+                    transformStyle: 'preserve-3d',
                     transition: "box-shadow 0.2s, transform 0.2s",
                     cursor: "pointer",
                   }}
@@ -350,8 +365,6 @@ export default function Home() {
                     src={lumoraImg}
                     alt="Lumora Project"
                     style={{ width: "100%", height: 200, objectFit: "cover", transition: "transform 0.3s" }}
-                    onMouseOver={e => e.currentTarget.style.transform = 'scale(1.04)'}
-                    onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                   />
                   <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <h3
@@ -396,10 +409,19 @@ export default function Home() {
               </Link>
 
               {/* Project 2: Temple Redesign */}
-              <Link to="/temple-redesign" style={{textDecoration: 'none'}}>
+              <Link to="/temple-redesign" style={{textDecoration: 'none', perspective: 1000}}>
                 <motion.div
                   variants={cardVariants}
                   whileHover="hover"
+                  animate={{
+                    y: [0, -10, 0],
+                    boxShadow: [
+                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)",
+                      "0 10px 34px rgba(0,0,0,0.14), 0 0 40px rgba(191,169,122,0.60), 0 0 82px rgba(191,169,122,0.32)",
+                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)"
+                    ],
+                  }}
+                  transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
                   style={{
                     background: "white",
                     borderRadius: 8,
@@ -407,7 +429,8 @@ export default function Home() {
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    minHeight: 350,
+                    height: 420,
+                    transformStyle: 'preserve-3d',
                     transition: "box-shadow 0.2s, transform 0.2s",
                     cursor: "pointer",
                   }}
@@ -416,8 +439,6 @@ export default function Home() {
                     src={sskdImg}
                     alt="Temple Project"
                     style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "top", transition: "transform 0.3s" }}
-                    onMouseOver={e => e.currentTarget.style.transform = 'scale(1.04)'}
-                    onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                   />
                   <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <h3
