@@ -22,6 +22,6 @@ export default defineConfig({
       }
     }
   ],
-  build: { outDir: 'docs' },
+  build: { outDir: 'dist' },
   resolve: { extensions: ['.js', '.jsx'] }
 })
