@@ -5,6 +5,7 @@ import Footer from './Footer';
 import AnimatedBackground from './AnimatedBackground';
 import InteractiveParticles from './InteractiveParticles';
 import CustomCursor from './CustomCursor';
+import BackToTop from './BackToTop';
 
 const Layout = ({ children }) => {
   return (
@@ -13,10 +14,11 @@ const Layout = ({ children }) => {
       <AnimatedBackground />
       <InteractiveParticles />
       <Navigation />
-      <main className="main-content">
+      <main className="main-content" id="main-content">
         {children}
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 };

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
+import Breadcrumb from "../components/Breadcrumb";
+import SEO from "../components/SEO";
 
 // Use global ScrollReveal
 
@@ -23,9 +25,17 @@ const ProjectDetails = ({
   children
 }) => (
   <div className={styles.wrapper}>
+    <SEO 
+      title={title}
+      description={subtitle || `View ${title} project details, including role, tools used, and live demo.`}
+    />
     <ScrollReveal className={styles.headerBar}>
       <div className={styles.headerContent}>
-        <Link to="/portfolio" className={styles.backLink}>&larr; Back to Portfolio</Link>
+        <Breadcrumb items={[
+          { label: 'Home', path: '/' },
+          { label: 'Portfolio', path: '/portfolio' },
+          { label: title, path: '#' }
+        ]} />
       </div>
     </ScrollReveal>
     <ScrollReveal className={styles.heroSection}>

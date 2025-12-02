@@ -62,11 +62,14 @@ class Particle {
     this.size += (this.targetSize - this.size) * 0.1;
   }
 
-  draw(ctx) {
+  draw(ctx, isDark) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(35, 39, 42, 0.14)';
+    ctx.fillStyle = isDark ? 'rgba(148, 169, 179, 0.35)' : 'rgba(133, 145, 139, 0.25)';
+    ctx.shadowBlur = isDark ? 16 : 12;
+    ctx.shadowColor = isDark ? 'rgba(148, 169, 179, 0.25)' : 'rgba(133, 145, 139, 0.15)';
     ctx.fill();
+    ctx.shadowBlur = 0;
   }
 }
 
@@ -92,9 +95,12 @@ const InteractiveParticles = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Check if dark mode is active
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      
       particles.forEach(particle => {
         particle.update(mouseRef.current.x, mouseRef.current.y);
-        particle.draw(ctx);
+        particle.draw(ctx, isDark);
       });
 
       frameRef.current = requestAnimationFrame(animate);

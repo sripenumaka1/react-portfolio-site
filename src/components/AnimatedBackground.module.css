@@ -11,12 +11,18 @@
 .gradientLayer {
   position: absolute;
   inset: 0;
-  background: radial-gradient(1200px 800px at 10% 20%, rgba(133, 145, 139, 0.18), transparent 60%),
-              radial-gradient(1000px 700px at 85% 30%, rgba(191, 161, 74, 0.14), transparent 60%),
-              radial-gradient(900px 900px at 50% 100%, rgba(0, 0, 0, 0.06), transparent 70%);
+  background: radial-gradient(1200px 800px at 10% 20%, rgba(133, 145, 139, 0.12), transparent 60%),
+              radial-gradient(1000px 700px at 85% 30%, rgba(191, 161, 74, 0.10), transparent 60%),
+              radial-gradient(900px 900px at 50% 100%, rgba(0, 0, 0, 0.04), transparent 70%);
   filter: blur(0.5px) saturate(108%);
   transform: translateZ(0);
-  animation: gradientDrift 28s ease-in-out infinite alternate;
+  animation: gradientDrift 15s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .gradientLayer {
+  background: radial-gradient(1200px 800px at 10% 20%, rgba(148, 169, 179, 0.08), transparent 60%),
+              radial-gradient(1000px 700px at 85% 30%, rgba(212, 175, 122, 0.06), transparent 60%),
+              radial-gradient(900px 900px at 50% 100%, rgba(96, 165, 250, 0.04), transparent 70%);
 }
 
 .particles {
@@ -29,9 +35,14 @@
   width: var(--p-size, 18px);
   height: var(--p-size, 18px);
   border-radius: 999px;
-  background: rgba(35, 39, 42, 0.14);
-  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  background: rgba(133, 145, 139, 0.25);
+  box-shadow: 0 0 12px rgba(133, 145, 139, 0.15);
   animation: floatParticle var(--p-duration, 16s) ease-in-out var(--p-delay, 0s) infinite;
+}
+
+[data-theme="dark"] .particle {
+  background: rgba(148, 169, 179, 0.35);
+  box-shadow: 0 0 16px rgba(148, 169, 179, 0.25);
 }
 
 @keyframes gradientDrift {
@@ -43,7 +54,9 @@
 @keyframes floatParticle {
   0% { transform: translate3d(0, 0, 0); opacity: 0.0; }
   10% { opacity: var(--p-opacity, 0.18); }
+  25% { transform: translate3d(calc(var(--p-x, 40px) * 0.5), calc(var(--p-y, -60px) * 0.5), 0); }
   50% { transform: translate3d(var(--p-x, 40px), var(--p-y, -60px), 0); }
+  75% { transform: translate3d(calc(var(--p-x, 40px) * 0.5), calc(var(--p-y, -60px) * 0.5), 0); }
   90% { opacity: var(--p-opacity, 0.18); }
   100% { transform: translate3d(0, 0, 0); opacity: 0.0; }
 }

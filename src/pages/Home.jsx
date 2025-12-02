@@ -9,6 +9,8 @@ import { useRef } from 'react';
 import { FaCode, FaPaintBrush, FaReact } from 'react-icons/fa';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
+import SEO from '../components/SEO';
+import { useTheme } from '../context/ThemeContext';
 
 
 const heroVariants = {
@@ -19,7 +21,7 @@ const heroVariants = {
 const buttonVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.5 } },
-  hover: { scale: 1.07, backgroundColor: "#333", color: "#fff", transition: { duration: 0.2 } },
+  hover: { scale: 1.07, transition: { duration: 0.2 } },
 };
 
 const cardContainerVariants = {
@@ -35,24 +37,26 @@ const cardVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
   hover: {
-    y: -8,
-    rotateX: 6,
-    rotateY: -6,
-    boxShadow: "0 12px 42px rgba(0,0,0,0.18), 0 0 36px rgba(191,169,122,0.62), 0 0 96px rgba(191,169,122,0.34)",
+    scale: 1.05,
+    y: -12,
+    transition: { 
+      duration: 0.35,
+      ease: [0.4, 0, 0.2, 1]
+    },
+    boxShadow: "0 20px 60px rgba(0,0,0,0.25), 0 0 60px rgba(191,169,122,0.8), 0 0 120px rgba(191,169,122,0.5)",
   },
 };
 
 const accentBrown = '#8B5C2A'; 
-const DARK_GREY = '#23272a';
 const PARTICLE_COUNT = 12;
 function getRandom(min, max) { return Math.random() * (max - min) + min; }
 const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
   size: getRandom(16, 32),
   top: getRandom(20, 500),
   left: getRandom(20, 1400),
-  duration: getRandom(10, 22),
-  delay: getRandom(0, 4),
-  opacity: getRandom(0.08, 0.18),
+  duration: getRandom(3, 6), // Much faster: 3-6 seconds instead of 10-22
+  delay: getRandom(0, 2), // Shorter delays
+  opacity: getRandom(0.12, 0.25),
 }));
 
 function Typewriter({ text, speed = 80, ...props }) {
@@ -78,6 +82,7 @@ function Typewriter({ text, speed = 80, ...props }) {
 export default function Home() {
   const [showName, setShowName] = useState(false);
   const { isLoading } = usePerformanceMonitor('Home');
+  const { isDark } = useTheme();
   
   useEffect(() => {
     const timer = setTimeout(() => setShowName(true), 700); // match fade-in duration of Hi I'm
@@ -85,6 +90,10 @@ export default function Home() {
   }, []);
   return (
     <>
+      <SEO 
+        title="Home"
+        description="Welcome to Sri Penumaka's portfolio. Designing clean, intuitive, and purposeful digital experiences."
+      />
       <LoadingBar isLoading={isLoading} />
       <section
         style={{
@@ -99,7 +108,7 @@ export default function Home() {
           justifyContent: "flex-start",
           marginBottom: 32,
           overflow: "hidden",
-          background: "#fff",
+          background: "var(--bg-secondary)",
           zIndex: 1,
         }}
       >
@@ -135,9 +144,9 @@ export default function Home() {
                 width: p.size,
                 height: p.size,
                 borderRadius: '50%',
-                background: DARK_GREY,
+                background: 'var(--text-primary)',
                 opacity: p.opacity,
-                boxShadow: '0 0 12px 2px rgba(0,0,0,0.10)',
+                boxShadow: '0 0 16px 4px rgba(148, 169, 179, 0.4)',
               }}
             />
           ))}
@@ -147,7 +156,7 @@ export default function Home() {
             position: "relative",
             zIndex: 2,
             padding: "4vw 6vw",
-            color: "#111",
+            color: "var(--text-primary)",
             maxWidth: 1248,
             width: "100%",
             margin: "0 auto",
@@ -165,7 +174,7 @@ export default function Home() {
               fontSize: "2.2rem",
               fontFamily: "Rubik, sans-serif",
               fontWeight: 400,
-              color: '#111',
+              color: 'var(--text-primary)',
               marginBottom: 0,
               letterSpacing: 1,
             }}
@@ -198,18 +207,32 @@ export default function Home() {
                   width: p.size,
                   height: p.size,
                   borderRadius: '50%',
-                  background: DARK_GREY,
+                  background: 'var(--text-primary)',
                   opacity: p.opacity,
-                  boxShadow: '0 0 12px 2px rgba(0,0,0,0.10)',
+                  boxShadow: '0 0 16px 4px rgba(148, 169, 179, 0.4)',
                 }}
               />
             ))}
-            <h1
+            <motion.h1
+              initial={{ opacity: 1 }}
+              animate={{
+                y: [0, -8, 0],
+                filter: [
+                  'drop-shadow(0 0 20px rgba(191, 169, 122, 0.9)) drop-shadow(0 0 40px rgba(191, 169, 122, 0.6))',
+                  'drop-shadow(0 0 50px rgba(191, 169, 122, 1)) drop-shadow(0 0 80px rgba(191, 169, 122, 0.9)) drop-shadow(0 0 120px rgba(191, 169, 122, 0.6))',
+                  'drop-shadow(0 0 20px rgba(191, 169, 122, 0.9)) drop-shadow(0 0 40px rgba(191, 169, 122, 0.6))'
+                ]
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: [0.4, 0, 0.2, 1]
+              }}
               style={{
                 fontSize: "clamp(3.5rem, 8vw, 5.5rem)",
                 fontFamily: "'Rubik', sans-serif",
                 fontWeight: 600,
-                color: '#111',
+                color: 'var(--text-primary)',
                 margin: 0,
                 lineHeight: 1.08,
                 letterSpacing: 2,
@@ -217,18 +240,13 @@ export default function Home() {
                 position: 'relative',
                 textAlign: 'left',
                 textTransform: 'uppercase',
-                textShadow: '0 0 6px #bfa97a, 0 0 12px #fff8e1',
-                overflow: 'hidden',
+                overflow: 'visible',
                 display: 'inline-block',
               }}
               className="hero-name-glow"
             >
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                {showName && <Typewriter text={"SRI PENUMAKA"} speed={60} />}
-                {/* Light sweep overlay */}
-                <span className="hero-name-flash" />
-              </span>
-            </h1>
+              {showName && <Typewriter text={"SRI PENUMAKA"} speed={60} />}
+            </motion.h1>
           </div>
           {/* Tagline - fade in after name */}
           <motion.div
@@ -239,7 +257,7 @@ export default function Home() {
               fontSize: "1.5rem",
               fontFamily: "Rubik, sans-serif",
               fontWeight: 400,
-              color: '#111',
+              color: 'var(--text-primary)',
               marginTop: 18,
               marginBottom: 32,
               letterSpacing: 1,
@@ -253,10 +271,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.7 }}
-            whileHover={{ scale: 1.07, backgroundColor: accentBrown, color: "#fff" }}
+            whileHover={{ scale: 1.07 }}
             style={{
-              background: "#111",
-              color: "#fff",
+              background: "var(--color-dark)",
+              color: "var(--color-light)",
               fontFamily: "Rubik, sans-serif",
               fontSize: 18,
               padding: "14px 40px",
@@ -302,7 +320,7 @@ export default function Home() {
             <h2
               style={{
                 textAlign: "center",
-                color: "#1A1A1A",
+                color: "var(--text-primary)",
                 fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
                 fontFamily: "Rubik, sans-serif",
                 fontWeight: 400,
@@ -314,7 +332,7 @@ export default function Home() {
             <p
               style={{
                 textAlign: "center",
-                color: "rgba(26,26,26,0.7)",
+                color: "var(--text-secondary)",
                 fontSize: 16,
                 fontFamily: "Manrope, sans-serif",
                 fontWeight: 400,
@@ -349,15 +367,13 @@ export default function Home() {
                   }}
                   transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
                   style={{
-                    background: "white",
+                    background: "var(--bg-secondary)",
                     borderRadius: 8,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 0 0 rgba(191,169,122,0), 0 0 0 rgba(191,169,122,0)",
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
                     height: 420,
-                    transformStyle: 'preserve-3d',
-                    transition: "box-shadow 0.2s, transform 0.2s",
                     cursor: "pointer",
                   }}
                 >
@@ -369,7 +385,7 @@ export default function Home() {
                   <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <h3
                       style={{
-                        color: "#1A1A1A",
+                        color: "var(--text-primary)",
                         fontSize: 20,
                         fontFamily: "Rubik, sans-serif",
                         fontWeight: 400,
@@ -380,7 +396,7 @@ export default function Home() {
                     </h3>
                     <p
                       style={{
-                        color: "rgba(26,26,26,0.7)",
+                        color: "var(--text-secondary)",
                         fontSize: 16,
                         fontFamily: "Open Sans, sans-serif",
                         fontWeight: 400,
@@ -391,7 +407,7 @@ export default function Home() {
                     </p>
                     <span
                       style={{
-                        color: "#1A1A1A",
+                        color: "var(--text-primary)",
                         fontSize: 14,
                         fontFamily: "Rubik, sans-serif",
                         fontWeight: 400,
@@ -399,8 +415,8 @@ export default function Home() {
                         cursor: "pointer",
                         transition: "color 0.2s",
                       }}
-                      onMouseOver={e => e.currentTarget.style.color = '#85918B'}
-                      onMouseOut={e => e.currentTarget.style.color = '#1A1A1A'}
+                      onMouseOver={e => e.currentTarget.style.color = isDark ? '#D4AF7A' : '#85918B'}
+                      onMouseOut={e => e.currentTarget.style.color = isDark ? '#F1F5F9' : '#1A1A1A'}
                     >
                       View Project
                     </span>
@@ -423,15 +439,13 @@ export default function Home() {
                   }}
                   transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
                   style={{
-                    background: "white",
+                    background: "var(--bg-secondary)",
                     borderRadius: 8,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 0 0 rgba(191,169,122,0), 0 0 0 rgba(191,169,122,0)",
                     overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
                     height: 420,
-                    transformStyle: 'preserve-3d',
-                    transition: "box-shadow 0.2s, transform 0.2s",
                     cursor: "pointer",
                   }}
                 >
@@ -443,7 +457,7 @@ export default function Home() {
                   <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <h3
                       style={{
-                        color: "#1A1A1A",
+                        color: "var(--text-primary)",
                         fontSize: 20,
                         fontFamily: "Rubik, sans-serif",
                         fontWeight: 400,
@@ -454,7 +468,7 @@ export default function Home() {
                     </h3>
                     <p
                       style={{
-                        color: "rgba(26,26,26,0.7)",
+                        color: "var(--text-secondary)",
                         fontSize: 14,
                         fontFamily: "Open Sans, sans-serif",
                         fontWeight: 400,
@@ -465,7 +479,7 @@ export default function Home() {
                     </p>
                     <span
                       style={{
-                        color: "#1A1A1A",
+                        color: "var(--text-primary)",
                         fontSize: 14,
                         fontFamily: "Rubik, sans-serif",
                         fontWeight: 400,
@@ -473,8 +487,8 @@ export default function Home() {
                         cursor: "pointer",
                         transition: "color 0.2s",
                       }}
-                      onMouseOver={e => e.currentTarget.style.color = '#F7F7F7'}
-                      onMouseOut={e => e.currentTarget.style.color = '#1A1A1A'}
+                      onMouseOver={e => e.currentTarget.style.color = isDark ? '#D4AF7A' : '#85918B'}
+                      onMouseOut={e => e.currentTarget.style.color = isDark ? '#F1F5F9' : '#1A1A1A'}
                     >
                       View Project
                     </span>
@@ -492,8 +506,8 @@ export default function Home() {
               width: "100vw",
               marginLeft: "calc(-50vw + 50%)",
               marginRight: "calc(-50vw + 50%)",
-              padding: "64px 2rem",
-              background: "#EEEEEE",
+            padding: "64px 2rem",
+            background: "var(--bg-tertiary)",
               boxSizing: "border-box",
               textAlign: "center",
               borderTop: "1px solid rgba(0,0,0,0.05)",
@@ -510,7 +524,7 @@ export default function Home() {
             >
               <h2
                 style={{
-                  color: "#1A1A1A",
+                  color: "var(--text-primary)",
                   fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
                   fontFamily: "Rubik, sans-serif",
                   fontWeight: 400,
@@ -521,7 +535,7 @@ export default function Home() {
               </h2>
               <p
                 style={{
-                  color: "rgba(26,26,26,0.8)",
+                  color: "var(--text-secondary)",
                   fontSize: 18,
                   fontFamily: "Manrope, sans-serif",
                   fontWeight: 400,
@@ -536,8 +550,8 @@ export default function Home() {
                 animate="visible"
                 whileHover="hover"
                 style={{
-                  background: "#1A1A1A",
-                  color: "#FFFFFF",
+                  background: "var(--color-primary)",
+                  color: isDark ? "#FFFFFF" : "#1A1A1A",
                   fontFamily: "Rubik, sans-serif",
                   fontSize: 16,
                   padding: "12px 32px",

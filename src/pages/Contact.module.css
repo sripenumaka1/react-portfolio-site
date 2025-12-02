@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   width: 100vw;
-  background: #F7F7F7;
+  background: var(--bg-primary);
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 .heroSection {
   width: 100%;
   padding: 80px 5vw 60px 5vw;
-  background: white;
+  background: var(--bg-secondary);
   text-align: center;
   position: relative;
   z-index: 1;
@@ -31,7 +31,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 400;
-  color: #1A1A1A;
+  color: var(--text-primary);
   margin: 0 0 24px 0;
   letter-spacing: 1px;
 }
@@ -40,7 +40,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
 }
@@ -51,7 +51,7 @@
   flex: 1;
   position: relative;
   z-index: 1;
-  background: #F7F7F7;
+  background: var(--bg-primary);
 }
 
 .contactContent {
@@ -72,7 +72,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: 2rem;
   font-weight: 400;
-  color: #1A1A1A;
+  color: var(--text-primary);
   margin: 0 0 24px 0;
 }
 
@@ -80,7 +80,7 @@
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 48px 0;
 }
@@ -104,16 +104,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--bg-tertiary);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .contactLabel {
   font-family: 'Rubik', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
   margin: 0 0 4px 0;
 }
 
@@ -121,23 +121,24 @@
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: rgba(26, 26, 26, 0.7);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .contactValue:hover {
-  color: #85918B;
+  color: var(--color-primary);
 }
 
 .contactForm {
-  background: white;
+  background: var(--bg-secondary);
   padding: 48px;
   border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   gap: 24px;
+  border: 1px solid var(--color-gray-300);
 }
 
 .formGroup {
@@ -150,7 +151,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
 }
 
 .input,
@@ -158,17 +159,18 @@
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
   padding: 12px 16px;
-  border: 1px solid rgba(191, 191, 191, 0.3);
+  border: 1px solid var(--color-gray-400);
   border-radius: 6px;
-  background: white;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #85918B;
-  box-shadow: 0 0 0 3px rgba(133, 145, 139, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(148, 169, 179, 0.2);
 }
 
 .textarea {
@@ -176,27 +178,144 @@
   min-height: 120px;
 }
 
+.required {
+  color: var(--color-error);
+}
+
+.inputError {
+  border-color: var(--color-error) !important;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.errorText {
+  font-family: 'Manrope', sans-serif;
+  font-size: var(--text-sm);
+  color: var(--color-error);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.errorText::before {
+  content: '⚠';
+}
+
+.generalError {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  color: var(--color-error);
+  font-family: 'Manrope', sans-serif;
+  font-size: var(--text-sm);
+}
+
 .submitButton {
-  background: #1A1A1A;
+  background: var(--color-dark);
   color: white;
   font-family: 'Rubik', sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: var(--font-medium);
   padding: 16px 32px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: all var(--transition-base);
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 160px;
+  justify-content: center;
 }
 
-.submitButton:hover {
-  background: #333;
+.submitButton:hover:not(:disabled) {
+  background: var(--color-primary);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
-.submitButton:active {
+.submitButton:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.successMessage {
+  background: white;
+  padding: var(--space-12);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.successIcon {
+  animation: successPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.successTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.successText {
+  font-family: 'Manrope', sans-serif;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 400px;
+}
+
+.sendAnotherButton {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-family: 'Rubik', sans-serif;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: var(--space-4);
+}
+
+.sendAnotherButton:hover {
+  background: var(--bg-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* Mobile responsiveness */

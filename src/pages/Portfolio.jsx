@@ -7,6 +7,7 @@ import { SiJavascript, SiReact, SiCss3, SiHtml5 } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
+import SEO from '../components/SEO';
 import lumoraImg from '../assets/images/lumora3.png';
 import sskdImg from '../assets/images/sskd.png';
 import floatingGokuImg from '../assets/images/floating-goku.png';
@@ -75,6 +76,10 @@ const Portfolio = () => {
 
   return (
     <div className="container">
+      <SEO 
+        title="Portfolio"
+        description="Explore my web design and development projects including UI/UX designs, responsive websites, and interactive web applications."
+      />
       <LoadingBar isLoading={isLoading} />
       <ScrollReveal>
         {/* Hero Section */}

@@ -2,7 +2,7 @@
 .container {
     width: 100%;
     min-height: 100vh;
-    background: #F7F7F7;
+    background: var(--bg-primary);
     overflow: hidden;
 }
 
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0 96px;
-    background: #e5e7eb;
+    background: var(--bg-secondary);
     margin-top: 0;
     position: relative;
     overflow: hidden;
@@ -29,10 +29,10 @@
 
 .codingIcon {
     position: absolute;
-    opacity: 0.22;
+    opacity: 0.15;
     font-size: 56px;
     animation: floatCode 7s ease-in-out infinite;
-    color: #22336c;
+    color: var(--text-tertiary);
 }
 .codingIcon.icon1 { left: 10%; top: 20%; animation-delay: 0s; }
 .codingIcon.icon2 { left: 60%; top: 10%; animation-delay: 1.5s; }
@@ -59,7 +59,7 @@
 }
 
 .heroTitle {
-    color: #1A1A1A;
+    color: var(--text-primary);
     font-size: 60px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -69,7 +69,7 @@
 }
 
 .heroSubtitle {
-    color: #1A1A1A;
+    color: var(--text-primary);
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -98,16 +98,22 @@
     background: #F7F7F7;
     border-radius: 8px;
     border: 1px solid #F3F4F6;
+    box-shadow: 0 0 0 rgba(0,0,0,0), 
+                0 0 0 rgba(191,169,122,0), 
+                0 0 0 rgba(191,169,122,0);
     padding: 33px;
     height: 250px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .serviceCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 
+                0 0 30px rgba(191,169,122,0.5), 
+                0 0 60px rgba(191,169,122,0.25);
 }
 
 .serviceIcon {
@@ -157,7 +163,7 @@
 }
 
 .techTitle {
-    color: #1A1A1A;
+    color: var(--text-primary);
     font-size: 24px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -179,6 +185,9 @@
     background: white;
     border-radius: 8px;
     border: 1px solid #F3F4F6;
+    box-shadow: 0 0 0 rgba(0,0,0,0), 
+                0 0 0 rgba(191,169,122,0), 
+                0 0 0 rgba(191,169,122,0);
     padding: 25px 0;
     display: flex;
     flex-direction: column;
@@ -186,11 +195,15 @@
     justify-content: center;
     height: 134px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .techCard:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 
+                0 0 30px rgba(191,169,122,0.5), 
+                0 0 60px rgba(191,169,122,0.25);
 }
 
 .techIcon {
@@ -226,7 +239,7 @@
 }
 
 .projectsTitle {
-    color: #1A1A1A;
+    color: var(--text-primary);
     font-size: 24px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -246,19 +259,25 @@
     background: white;
     border-radius: 16px;
     border: 1px solid #F3F4F6;
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.08), 
+                0 0 0 rgba(191,169,122,0), 
+                0 0 0 rgba(191,169,122,0);
     overflow: hidden;
     width: 100%;
     min-height: 380px;
     max-width: 700px;
     display: flex;
     flex-direction: row;
-    transition: all 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
 .projectCard:hover {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22), 
+                0 0 50px rgba(191,169,122,0.7), 
+                0 0 100px rgba(191,169,122,0.4);
 }
 
 .projectImage {
@@ -301,7 +320,7 @@
 }
 
 .projectTitle {
-    color: #111827;
+    color: var(--text-primary);
     font-size: 22px;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
@@ -311,7 +330,7 @@
 }
 
 .projectDescription {
-    color: #4B5563;
+    color: var(--text-secondary);
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -359,7 +378,7 @@
 }
 
 .ctaTitle {
-    color: #F7F7F7;
+    color: var(--text-primary);
     font-size: 36px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -526,15 +545,19 @@
   -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   border: 1px solid rgba(243, 244, 246, 0.4);
-  box-shadow: 0px 8px 32px rgba(0,0,0,0.08);
+  box-shadow: 0px 8px 32px rgba(0,0,0,0.08), 
+              0 0 0 rgba(191,169,122,0), 
+              0 0 0 rgba(191,169,122,0);
   overflow: hidden;
   height: 480px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   position: relative;
-  will-change: transform;
-  animation: floatCard 4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  animation: floatCard 5s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .projectCard:nth-child(2n) {
@@ -551,7 +574,10 @@
 
 .projectCard:hover {
   animation-play-state: paused;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+  transform: translateY(-12px) scale(1.04);
+  box-shadow: 0 28px 64px rgba(0,0,0,0.22), 
+              0 0 50px rgba(191,169,122,0.7), 
+              0 0 100px rgba(191,169,122,0.4);
 }
 
 .projectImage img {
@@ -560,11 +586,11 @@
   object-fit: cover;
   object-position: top;
   border-radius: 0 0 0 0;
-  transition: transform 0.3s;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .projectCard:hover .projectImage img {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 .projectsSection {
@@ -590,17 +616,38 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--bg-secondary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 20px;
-  border: 1px solid rgba(243, 244, 246, 0.4);
-  box-shadow: 0px 8px 32px rgba(0,0,0,0.08);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-gray-300);
+  box-shadow: var(--shadow-md), 
+              0 0 0 rgba(191,169,122,0), 
+              0 0 0 rgba(191,169,122,0);
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  will-change: transform;
-  animation: floatCard 4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  animation: floatCard 5s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projectCard.landscape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.projectCard.landscape:hover::before {
+  transform: scaleX(1);
 }
 
 .projectImage.landscape {
@@ -619,11 +666,25 @@
   object-fit: cover;
   object-position: top;
   border-radius: 0;
-  transition: transform 0.3s;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.35s ease;
+}
+
+.projectCard.landscape:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: var(--shadow-md), 
+              0 0 50px rgba(191,169,122,0.7), 
+              0 0 100px rgba(191,169,122,0.4);
 }
 
 .projectCard.landscape:hover .projectImage.landscape img {
-  transform: scale(1.04);
+  transform: scale(1.1);
+  filter: brightness(1.05);
+}
+
+.projectCard.landscape:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .projectContent.landscape {

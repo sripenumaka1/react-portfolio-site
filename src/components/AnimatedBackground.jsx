@@ -9,11 +9,11 @@ function generateParticles(count) {
     size: randomBetween(8, 22),
     left: `${randomBetween(2, 98)}%`,
     top: `${randomBetween(5, 95)}%`,
-    duration: `${randomBetween(6, 12)}s`, // Faster: reduced from 12-26s to 6-12s
-    delay: `${randomBetween(0, 5)}s`, // Faster: reduced from 0-10s to 0-5s
-    opacity: randomBetween(0.08, 0.18),
-    x: `${randomBetween(-80, 80)}px`,
-    y: `${randomBetween(-120, 60)}px`,
+    duration: `${randomBetween(3, 6)}s`, // Even faster: 3-6 seconds
+    delay: `${randomBetween(0, 3)}s`, // Shorter delays: 0-3 seconds
+    opacity: randomBetween(0.1, 0.2),
+    x: `${randomBetween(-120, 120)}px`, // Increased movement range
+    y: `${randomBetween(-150, 80)}px`, // Increased movement range
   }));
 }
 

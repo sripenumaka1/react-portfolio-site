@@ -3,9 +3,10 @@ import styles from './About.module.css';
 import profileImg from '../assets/images/profile.jpg';
 import { motion } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
-import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell } from 'react-icons/fa';
+import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell, FaDownload } from 'react-icons/fa';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
+import SEO from '../components/SEO';
 
 // Use global ScrollReveal
 
@@ -32,6 +33,10 @@ const About = () => {
 
   return (
     <div className={styles.container}>
+      <SEO 
+        title="About Me"
+        description="Learn more about Sri Penumaka, a web designer and frontend developer specializing in responsive, user-centered digital experiences."
+      />
       <LoadingBar isLoading={isLoading} />
       <ScrollReveal contentClassName={styles.aboutSection}>
         <div className={styles.aboutIconsBg}>
@@ -67,20 +72,68 @@ const About = () => {
           <div className={styles.sectionLabel}>About Me</div>
           <h1 className={styles.mainHeading}>Hi, I'm Sri.</h1>
           
-          <p className={styles.introText}>
-            I'm a passionate developer dedicated to creating exceptional digital experiences that solve real-world problems. My journey in technology is driven by curiosity, innovation, and a commitment to continuous learning.
+          <p className={styles.professionalSummary}>
+            I'm a web designer and frontend developer specializing in creating responsive, 
+            user-centered digital experiences. My work spans UI/UX design, interactive web 
+            development, and brand-focused landing pages. I'm passionate about translating 
+            complex ideas into clean, accessible interfaces that serve real community needs.
           </p>
           
-          <p className={styles.secondaryText}>
-            Through every project, I strive to blend technical expertise with creative problem-solving, ensuring that each solution not only meets requirements but exceeds expectations.
-          </p>
+          <div className={styles.careerGoalsBox}>
+            <h3 className={styles.miniHeading}>Current Focus</h3>
+            <p className={styles.careerGoalsText}>
+              I'm building my expertise in frontend development and UI/UX design, with a focus 
+              on creating meaningful digital experiences for local businesses and community 
+              organizations. I'm eager to contribute to projects where thoughtful design meets 
+              real-world impact, while continuing to expand my technical skillset.
+            </p>
+          </div>
           
           <p className={styles.descriptionText}>
-            I'm a curious and creative individual who enjoys turning ideas into clean, engaging visuals. Whether I'm designing a layout or building a website, I find fulfillment in creating things that are both meaningful and easy to use.
+            I'm a curious and creative individual who enjoys turning ideas into clean, engaging visuals. 
+            Whether I'm designing a layout or building a website, I find fulfillment in creating things 
+            that are both meaningful and easy to use.
           </p>
+          
           <p className={styles.personalText}>
-            Outside of coding, I love playing sports like <b>basketball</b> and <b>soccer</b>, lifting weights at the <b>gym</b>, and listening to or making <b>music</b>. These activities keep me energized, creative, and balanced.
+            Outside of coding, I love playing sports like <b>basketball</b> and <b>soccer</b>, 
+            lifting weights at the <b>gym</b>, and listening to or making <b>music</b>. 
+            These activities keep me energized, creative, and balanced.
           </p>
+          
+          <motion.a
+            href="/assets/resume.pdf"
+            download="SriPenumaka_Resume.pdf"
+            className={styles.resumeButton}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaDownload />
+            Download Resume
+          </motion.a>
+        </div>
+      </ScrollReveal>
+
+      {/* Current Projects Section */}
+      <ScrollReveal contentClassName={styles.currentProjects}>
+        <h2 className={styles.currentProjectsTitle}>Current Projects</h2>
+        <div className={styles.projectHighlight}>
+          <div className={styles.wipBadge}>IN PROGRESS</div>
+          <h3 className={styles.projectName}>
+            Professional Janitorial Services Website Redesign
+          </h3>
+          <p className={styles.projectDescription}>
+            Redesigning and modernizing the web presence for a local janitorial business, 
+            focusing on improved user experience, mobile responsiveness, and clear service 
+            communication. Working directly with the business owner to understand client 
+            needs and translate them into an effective digital solution.
+          </p>
+          <div className={styles.projectSkills}>
+            <span className={styles.skillTag}>UI/UX Design</span>
+            <span className={styles.skillTag}>Client Collaboration</span>
+            <span className={styles.skillTag}>Responsive Design</span>
+            <span className={styles.skillTag}>Business Strategy</span>
+          </div>
         </div>
       </ScrollReveal>
 
@@ -140,11 +193,11 @@ const About = () => {
           marginLeft: "calc(-50vw + 50%)",
           marginRight: "calc(-50vw + 50%)",
           padding: "48px 2rem",
-          background: "#EEEEEE",
+          background: "var(--bg-tertiary)",
           boxSizing: "border-box",
           textAlign: "center",
-          borderTop: "1px solid rgba(0,0,0,0.05)",
-          borderBottom: "1px solid rgba(0,0,0,0.05)",
+          borderTop: "1px solid var(--color-gray-400)",
+          borderBottom: "1px solid var(--color-gray-400)",
           position: "relative",
           zIndex: 1,
         }}
@@ -166,22 +219,6 @@ const About = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.viewLinkedInBtn}
-            style={{
-              background: "#0077b5",
-              color: "#fff",
-              fontFamily: "Rubik, sans-serif",
-              fontWeight: 500,
-              fontSize: 16,
-              padding: "12px 24px",
-              borderRadius: 8,
-              textDecoration: "none",
-              display: "inline-block",
-              minWidth: 140,
-              textAlign: "center",
-              boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-              transition: "background 0.2s, transform 0.2s",
-              border: "none"
-            }}
           >
             View LinkedIn
           </a>
@@ -194,44 +231,16 @@ const About = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
-              style={{
-                background: "#fff",
-                color: "#000",
-                borderRadius: "50%",
-                width: 44,
-                height: 44,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 18,
-                fontWeight: 600,
-                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-                border: "1px solid #ccc"
-              }}
               title="Email"
             >
               &#9993;
             </a>
             {/* GitHub Button */}
             <a
-              href="https://github.com"
+              href="https://github.com/sripenumaka1"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
-              style={{
-                background: "#fff",
-                color: "#000",
-                borderRadius: "50%",
-                width: 44,
-                height: 44,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 18,
-                fontWeight: 600,
-                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-                border: "1px solid #ccc"
-              }}
               title="GitHub"
             >
               gh
