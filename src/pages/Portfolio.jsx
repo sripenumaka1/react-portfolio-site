@@ -65,6 +65,18 @@ const techStack = [
 
 const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags)))];
 
+// Floating particles for hero section
+const PARTICLE_COUNT = 10;
+function getRandom(min, max) { return Math.random() * (max - min) + min; }
+const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
+  size: getRandom(12, 28),
+  top: getRandom(20, 350),
+  left: getRandom(20, 1200),
+  duration: getRandom(4, 7),
+  delay: getRandom(0, 3),
+  opacity: getRandom(0.15, 0.3),
+}));
+
 // Use global ScrollReveal
 
 const Portfolio = () => {
@@ -84,12 +96,70 @@ const Portfolio = () => {
       <ScrollReveal>
         {/* Hero Section */}
         <section className="heroSection">
+          {/* Floating particles */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: 0, left: 0, width: '100%', height: '100%',
+              zIndex: 0,
+              pointerEvents: 'none',
+            }}
+          >
+            {particles.map((p, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ y: 0, opacity: 0 }}
+                animate={{
+                  y: [0, getRandom(-60, 60), 0],
+                  x: [0, getRandom(-80, 80), 0],
+                  opacity: [0, p.opacity, p.opacity * 0.7, p.opacity, 0],
+                }}
+                transition={{
+                  duration: p.duration,
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  ease: 'easeInOut',
+                  delay: p.delay,
+                }}
+                style={{
+                  position: 'absolute',
+                  top: p.top,
+                  left: p.left,
+                  width: p.size,
+                  height: p.size,
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  boxShadow: '0 0 16px 4px rgba(148, 169, 179, 0.4)',
+                }}
+              />
+            ))}
+          </motion.div>
           <div className="codingBg">
-            <span className="codingIcon icon1">{'<>'}</span>
-            <span className="codingIcon icon2">{'{}'}</span>
-            <span className="codingIcon icon3">{'</>'}</span>
-            <span className="codingIcon icon4"><SiReact /></span>
-            <span className="codingIcon icon5"><SiJavascript /></span>
+            <motion.span 
+              className="codingIcon icon1"
+              animate={{ y: [0, -30, 0], scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            >{'<>'}</motion.span>
+            <motion.span 
+              className="codingIcon icon2"
+              animate={{ y: [0, -30, 0], scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            >{'{}'}</motion.span>
+            <motion.span 
+              className="codingIcon icon3"
+              animate={{ y: [0, -30, 0], scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            >{'</>'}</motion.span>
+            <motion.span 
+              className="codingIcon icon4"
+              animate={{ y: [0, -30, 0], scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            ><SiReact /></motion.span>
+            <motion.span 
+              className="codingIcon icon5"
+              animate={{ y: [0, -30, 0], scale: [1, 1.1, 1], rotate: [0, 8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            ><SiJavascript /></motion.span>
           </div>
           <motion.div
             className="heroContent"

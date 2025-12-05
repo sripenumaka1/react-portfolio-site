@@ -216,7 +216,6 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 1 }}
               animate={{
-                y: [0, -8, 0],
                 filter: [
                   'drop-shadow(0 0 20px rgba(191, 169, 122, 0.9)) drop-shadow(0 0 40px rgba(191, 169, 122, 0.6))',
                   'drop-shadow(0 0 50px rgba(191, 169, 122, 1)) drop-shadow(0 0 80px rgba(191, 169, 122, 0.9)) drop-shadow(0 0 120px rgba(191, 169, 122, 0.6))',
@@ -224,9 +223,9 @@ export default function Home() {
                 ]
               }}
               transition={{
-                duration: 5,
+                duration: 2,
                 repeat: Infinity,
-                ease: [0.4, 0, 0.2, 1]
+                ease: "easeInOut"
               }}
               style={{
                 fontSize: "clamp(3.5rem, 8vw, 5.5rem)",

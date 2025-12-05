@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0 96px;
-    background: var(--bg-secondary);
+    background: transparent;
     margin-top: 0;
     position: relative;
     overflow: hidden;
@@ -25,14 +25,14 @@
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: 0;
     pointer-events: none;
+    transform: translateZ(0);
 }
 
 .codingIcon {
     position: absolute;
-    opacity: 0.15;
+    opacity: 0.4;
     font-size: 56px;
-    animation: floatCode 7s ease-in-out infinite;
-    color: var(--text-tertiary);
+    color: var(--text-primary);
 }
 .codingIcon.icon1 { left: 10%; top: 20%; animation-delay: 0s; }
 .codingIcon.icon2 { left: 60%; top: 10%; animation-delay: 1.5s; }
@@ -41,14 +41,14 @@
 .codingIcon.icon5 { left: 45%; top: 35%; animation-delay: 4s; }
 
 @keyframes floatCode {
-  0% { transform: translateY(0) scale(1) rotate(0deg); }
-  50% { transform: translateY(-30px) scale(1.1) rotate(8deg); }
-  100% { transform: translateY(0) scale(1) rotate(0deg); }
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-30px) scale(1.1) rotate(8deg); opacity: 0.6; }
+  100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.4; }
 }
 
 @keyframes floatCard {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
+  50% { transform: translateY(-15px); }
   100% { transform: translateY(0); }
 }
 
@@ -155,7 +155,7 @@
 /* Technical Expertise Section */
 .techSection {
     width: 100%;
-    background: #F7F7F7;
+    background: transparent;
     padding: 60px 336px;
     text-align: center;
     position: relative;
@@ -182,9 +182,9 @@
 }
 
 .techCard {
-    background: white;
+    background: var(--bg-primary);
     border-radius: 8px;
-    border: 1px solid #F3F4F6;
+    border: 1px solid var(--color-gray-300);
     box-shadow: 0 0 0 rgba(0,0,0,0), 
                 0 0 0 rgba(191,169,122,0), 
                 0 0 0 rgba(191,169,122,0);
@@ -225,7 +225,7 @@
 }
 
 .techName {
-    color: #1A1A1A;
+    color: var(--text-primary);
     font-size: 16px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -629,6 +629,7 @@
   position: relative;
   will-change: transform, box-shadow;
   animation: floatCard 5s ease-in-out infinite;
+  animation-fill-mode: both;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
               box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
