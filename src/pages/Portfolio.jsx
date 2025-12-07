@@ -2,55 +2,50 @@ import React, { useState } from "react";
 import './Portfolio.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
-import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope, FaTimes, FaArrowRight } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiCss3, SiHtml5 } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
+import profileImg from '../assets/images/profile.jpg';
 import lumoraImg from '../assets/images/lumora3.png';
 import sskdImg from '../assets/images/sskd.png';
 import floatingGokuImg from '../assets/images/floating-goku.png';
 import studyBuddyImg from '../assets/images/studybuddy.png';
-import lumora1Img from '../assets/images/lumora1.jpg';
-import lumora3Img from '../assets/images/lumora3.png';
 
 const projects = [
   {
     title: 'Lumora Landing Page',
     description: 'Lumora is a sleek, responsive landing page for a fictional home décor brand.',
     tags: ['UI/UX', 'Development'],
-    image: lumora3Img,
-    imageStyle: {},
-    overlay: false,
+    image: lumoraImg,
     link: '/lumora',
+    color: '#D4AF7A',
   },
   {
-    title: 'Shri Sai Kripa Dham Temple Website Redesign',
+    title: 'Temple Website Redesign',
     description: 'Shri Sai Kripa Dham is a redesigned website for my local temple in Surrey, BC',
     tags: ['UI/UX', 'Figma', 'Prototyping'],
     image: sskdImg,
-    imageStyle: { backgroundColor: '#85918B' },
-    overlay: true,
     link: '/temple-redesign',
+    color: '#94A9B3',
   },
   {
     title: 'Floating Goku',
     description: 'Animation using CSS keyframes.',
     tags: ['HTML5', 'CSS', 'Animation'],
     image: floatingGokuImg,
-    imageStyle: { backgroundColor: '#111' },
-    overlay: false,
     link: '/project-details-1',
+    color: '#F97316',
   },
   {
     title: 'StudyBuddy',
     description: 'A UI/UX Figma prototype to help students connect, collaborate, and stay accountable in their studies.',
     tags: ['UI/UX', 'Figma', 'Prototyping'],
     image: studyBuddyImg,
-    imageStyle: { backgroundColor: '#85918B' },
-    overlay: false,
     link: '/project-details-2',
+    color: '#A855F7',
   },
 ];
 
@@ -63,28 +58,42 @@ const techStack = [
   { name: 'GSAP', color: '#22C55E', icon: <FaMagic size={24} color="#F7F7F7" /> },
 ];
 
-const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags)))];
-
-// Floating particles for hero section
-const PARTICLE_COUNT = 10;
+// Floating particles
+const PARTICLE_COUNT = 15;
 function getRandom(min, max) { return Math.random() * (max - min) + min; }
 const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
-  size: getRandom(12, 28),
-  top: getRandom(20, 350),
-  left: getRandom(20, 1200),
-  duration: getRandom(4, 7),
-  delay: getRandom(0, 3),
-  opacity: getRandom(0.15, 0.3),
+  size: getRandom(6, 16),
+  top: `${getRandom(5, 95)}%`,
+  left: `${getRandom(5, 95)}%`,
+  duration: getRandom(5, 9),
+  delay: getRandom(0, 4),
+  opacity: getRandom(0.1, 0.25),
 }));
-
-// Use global ScrollReveal
 
 const Portfolio = () => {
   const { isLoading } = usePerformanceMonitor('Portfolio');
-  const [selectedTag, setSelectedTag] = useState('All');
-  const filteredProjects = selectedTag === 'All'
-    ? projects
-    : projects.filter(project => project.tags.includes(selectedTag));
+  const [focusedProject, setFocusedProject] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Calculate orbital positions for 4 projects
+  const orbitRadius = 280; // Distance from center
+  const getOrbitalPosition = (index, total) => {
+    const angle = (index / total) * 2 * Math.PI - Math.PI / 2; // Start from top
+    return {
+      x: Math.cos(angle) * orbitRadius,
+      y: Math.sin(angle) * orbitRadius,
+    };
+  };
+
+  const handleProjectClick = (index) => {
+    setFocusedProject(index);
+    setIsPaused(true);
+  };
+
+  const handleClose = () => {
+    setFocusedProject(null);
+    setIsPaused(false);
+  };
 
   return (
     <div className="container">
@@ -93,10 +102,10 @@ const Portfolio = () => {
         description="Explore my web design and development projects including UI/UX designs, responsive websites, and interactive web applications."
       />
       <LoadingBar isLoading={isLoading} />
+      
+      {/* Hero Section */}
       <ScrollReveal>
-        {/* Hero Section */}
         <section className="heroSection">
-          {/* Floating particles */}
           <motion.div
             style={{
               position: 'absolute',
@@ -105,7 +114,7 @@ const Portfolio = () => {
               pointerEvents: 'none',
             }}
           >
-            {particles.map((p, idx) => (
+            {particles.slice(0, 8).map((p, idx) => (
               <motion.div
                 key={idx}
                 initial={{ y: 0, opacity: 0 }}
@@ -206,78 +215,182 @@ const Portfolio = () => {
         </section>
       </ScrollReveal>
 
-      {/* Filter Bar */}
+      {/* Orbital Projects Showcase */}
       <ScrollReveal>
-        <div className="portfolioFilterBar">
-          {allTags.map(tag => (
-            <button
-              key={tag}
-              className={`portfolioFilterBtn${selectedTag === tag ? ' active' : ''}`}
-              onClick={() => setSelectedTag(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </ScrollReveal>
-
-      {/* Projects Grid */}
-      <ScrollReveal>
-        <section className="projectsSection">
+        <section className="orbitalSection">
           <h2 className="projectsTitle">My Portfolio</h2>
-          <div className="projectsGrid landscape">
-            <AnimatePresence>
-              {filteredProjects.map((project, idx) => (
-                <motion.div
-                  className="projectCard landscape"
-                  key={project.title}
-                  layout
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 40 }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    rotateY: 5,
-                    rotateX: -2,
-                    translateZ: "20px",
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-                  }}
-                  style={{
-                    transformStyle: "preserve-3d",
-                    perspective: "1000px"
-                  }}
-                >
-                  <Link to={project.link} style={{ textDecoration: 'none', display: 'flex', width: '100%', height: '100%' }}>
-                    <div className="projectImage landscape" style={project.imageStyle}>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        style={{
-                          width: project.title === 'Lumora Landing Page' ? '100%' : '100%',
-                          height: project.title === 'Lumora Landing Page' ? 320 : 260,
-                          objectFit: project.title === 'Lumora Landing Page' ? 'cover' : 'cover',
-                          objectPosition: project.title === 'Lumora Landing Page' ? 'center 10%' : 'top',
-                          borderRadius: 16,
-                          transition: 'transform 0.3s'
-                        }}
-                      />
-                      {project.overlay && <div className="projectImageOverlay"></div>}
+          <p className="orbitalSubtitle">Click on a project to explore</p>
+          
+          <div className="orbitalContainer">
+            {/* Floating particles in orbital area */}
+            {particles.map((p, idx) => (
+              <motion.div
+                key={`orbital-particle-${idx}`}
+                initial={{ opacity: 0 }}
+                animate={{
+                  y: [0, getRandom(-40, 40), 0],
+                  x: [0, getRandom(-40, 40), 0],
+                  opacity: [0, p.opacity * 0.6, p.opacity * 0.4, p.opacity * 0.6, 0],
+                }}
+                transition={{
+                  duration: p.duration,
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  ease: 'easeInOut',
+                  delay: p.delay,
+                }}
+                style={{
+                  position: 'absolute',
+                  top: p.top,
+                  left: p.left,
+                  width: p.size,
+                  height: p.size,
+                  borderRadius: '50%',
+                  background: 'var(--text-primary)',
+                  boxShadow: '0 0 12px 3px rgba(148, 169, 179, 0.3)',
+                  pointerEvents: 'none',
+                }}
+              />
+            ))}
+
+            {/* Orbit ring */}
+            <div className="orbitRing" />
+            <div className="orbitRingInner" />
+
+            {/* Center Profile Image */}
+            <motion.div
+              className="orbitalCenter"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.img
+                src={profileImg}
+                alt="Sri Penumaka"
+                className="orbitalProfileImg"
+                animate={{ 
+                  boxShadow: [
+                    '0 0 30px rgba(191, 161, 74, 0.4), 0 0 60px rgba(191, 161, 74, 0.2)',
+                    '0 0 50px rgba(191, 161, 74, 0.6), 0 0 100px rgba(191, 161, 74, 0.3)',
+                    '0 0 30px rgba(191, 161, 74, 0.4), 0 0 60px rgba(191, 161, 74, 0.2)',
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </motion.div>
+
+            {/* Orbiting Projects */}
+            <motion.div
+              className="orbitingProjects"
+              animate={{ rotate: isPaused ? 0 : 360 }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+            >
+              {projects.map((project, index) => {
+                const pos = getOrbitalPosition(index, projects.length);
+                return (
+                  <motion.div
+                    key={project.title}
+                    className="orbitingProject"
+                    style={{
+                      left: `calc(50% + ${pos.x}px)`,
+                      top: `calc(50% + ${pos.y}px)`,
+                    }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ 
+                      scale: 1, 
+                      opacity: 1,
+                      rotate: isPaused ? 0 : -360,
+                    }}
+                    transition={{
+                      scale: { duration: 0.5, delay: 0.3 + index * 0.1 },
+                      opacity: { duration: 0.5, delay: 0.3 + index * 0.1 },
+                      rotate: { duration: 30, repeat: Infinity, ease: 'linear' },
+                    }}
+                    whileHover={{ 
+                      scale: 1.15,
+                      zIndex: 10,
+                    }}
+                    onClick={() => handleProjectClick(index)}
+                  >
+                    <div 
+                      className="orbitingProjectInner"
+                      style={{ borderColor: project.color }}
+                    >
+                      <img src={project.image} alt={project.title} />
                     </div>
-                    <div className="projectContent landscape">
-                      <h3 className="projectTitle">{project.title}</h3>
-                      <p className="projectDescription">{project.description}</p>
-                      <div className="projectTags">
-                        {project.tags.map((tag) => (
-                          <span className="tag" key={tag}>{tag}</span>
-                        ))}
-                      </div>
+                    <div className="orbitingProjectOverlay">
+                      <span className="orbitingProjectTitle">{project.title}</span>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
+
+          {/* Focused Project Modal */}
+          <AnimatePresence>
+            {focusedProject !== null && (
+              <motion.div
+                className="projectModal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleClose}
+              >
+                <motion.div
+                  className="projectModalContent"
+                  initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.8, opacity: 0, y: 50 }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button className="modalClose" onClick={handleClose}>
+                    <FaTimes />
+                  </button>
+                  
+                  <div className="modalImageWrapper">
+                    <img 
+                      src={projects[focusedProject].image} 
+                      alt={projects[focusedProject].title}
+                      className="modalImage"
+                    />
+                  </div>
+                  
+                  <div className="modalInfo">
+                    <h3 className="modalTitle">{projects[focusedProject].title}</h3>
+                    <p className="modalDescription">{projects[focusedProject].description}</p>
+                    
+                    <div className="modalTags">
+                      {projects[focusedProject].tags.map((tag) => (
+                        <span 
+                          key={tag} 
+                          className="modalTag"
+                          style={{ borderColor: projects[focusedProject].color }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <Link 
+                      to={projects[focusedProject].link} 
+                      className="modalButton"
+                      style={{ background: projects[focusedProject].color }}
+                    >
+                      View Project
+                      <FaArrowRight />
+                    </Link>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
       </ScrollReveal>
 
@@ -320,4 +433,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio; 
+export default Portfolio;

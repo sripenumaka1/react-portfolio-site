@@ -19,16 +19,29 @@ const About = () => {
     { name: 'Gym', icon: <FaDumbbell />, color: '#183153' },
   ];
 
+  // Helper function for random values
+  const getRandom = (min, max) => Math.random() * (max - min) + min;
+
+  // Floating particles (small circles)
+  const PARTICLE_COUNT = 12;
+  const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
+    size: getRandom(8, 20),
+    top: `${getRandom(5, 90)}%`,
+    left: `${getRandom(5, 95)}%`,
+    duration: getRandom(4, 7),
+    delay: getRandom(0, 3),
+    opacity: getRandom(0.08, 0.18),
+  }));
+
   const aboutIcons = [
-    { icon: <FaBasketballBall />, style: { top: '10%', left: '15%', fontSize: '3.5rem', opacity: 0.13 } },
-    { icon: <FaFutbol />, style: { top: '60%', left: '10%', fontSize: '2.8rem', opacity: 0.11 } },
-    { icon: <FaMusic />, style: { top: '30%', left: '80%', fontSize: '3.2rem', opacity: 0.12 } },
-    { icon: <FaDumbbell />, style: { top: '75%', left: '70%', fontSize: '2.7rem', opacity: 0.10 } },
-    { icon: <FaBasketballBall />, style: { top: '20%', left: '60%', fontSize: '2.5rem', opacity: 0.09 } },
-    { icon: <FaFutbol />, style: { top: '80%', left: '40%', fontSize: '3.1rem', opacity: 0.10 } },
-    { icon: <FaMusic />, style: { top: '55%', left: '85%', fontSize: '2.6rem', opacity: 0.13 } },
-    { icon: <FaDumbbell />, style: { top: '40%', left: '35%', fontSize: '2.9rem', opacity: 0.12 } },
-    // Add more if desired
+    { icon: <FaBasketballBall />, style: { top: '10%', left: '15%', fontSize: '3.5rem', opacity: 0.13 }, duration: getRandom(4, 6), delay: getRandom(0, 2) },
+    { icon: <FaFutbol />, style: { top: '60%', left: '10%', fontSize: '2.8rem', opacity: 0.11 }, duration: getRandom(5, 7), delay: getRandom(0, 2) },
+    { icon: <FaMusic />, style: { top: '30%', left: '80%', fontSize: '3.2rem', opacity: 0.12 }, duration: getRandom(4, 6), delay: getRandom(0, 2) },
+    { icon: <FaDumbbell />, style: { top: '75%', left: '70%', fontSize: '2.7rem', opacity: 0.10 }, duration: getRandom(5, 7), delay: getRandom(0, 2) },
+    { icon: <FaBasketballBall />, style: { top: '20%', left: '60%', fontSize: '2.5rem', opacity: 0.09 }, duration: getRandom(4, 6), delay: getRandom(0, 2) },
+    { icon: <FaFutbol />, style: { top: '80%', left: '40%', fontSize: '3.1rem', opacity: 0.10 }, duration: getRandom(5, 7), delay: getRandom(0, 2) },
+    { icon: <FaMusic />, style: { top: '55%', left: '85%', fontSize: '2.6rem', opacity: 0.13 }, duration: getRandom(4, 6), delay: getRandom(0, 2) },
+    { icon: <FaDumbbell />, style: { top: '40%', left: '35%', fontSize: '2.9rem', opacity: 0.12 }, duration: getRandom(5, 7), delay: getRandom(0, 2) },
   ];
 
   return (
@@ -40,14 +53,57 @@ const About = () => {
       <LoadingBar isLoading={isLoading} />
       <ScrollReveal contentClassName={styles.aboutSection}>
         <div className={styles.aboutIconsBg}>
+          {/* Floating circle particles */}
+          {particles.map((p, idx) => (
+            <motion.div
+              key={`particle-${idx}`}
+              initial={{ y: 0, opacity: 0 }}
+              animate={{
+                y: [0, getRandom(-50, 50), 0],
+                x: [0, getRandom(-40, 40), 0],
+                opacity: [0, p.opacity, p.opacity * 0.7, p.opacity, 0],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'easeInOut',
+                delay: p.delay,
+              }}
+              style={{
+                position: 'absolute',
+                top: p.top,
+                left: p.left,
+                width: p.size,
+                height: p.size,
+                borderRadius: '50%',
+                background: 'var(--text-primary)',
+                boxShadow: '0 0 16px 4px rgba(148, 169, 179, 0.4)',
+                pointerEvents: 'none',
+              }}
+            />
+          ))}
+          {/* Floating icons */}
           {aboutIcons.map((item, i) => (
-            <span
-              key={i}
+            <motion.span
+              key={`icon-${i}`}
               className={styles.aboutBgIcon}
               style={item.style}
+              initial={{ y: 0, x: 0 }}
+              animate={{
+                y: [0, -40, -20, -50, 0],
+                x: [0, 20, -15, 10, 0],
+              }}
+              transition={{
+                duration: item.duration,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'easeInOut',
+                delay: item.delay,
+              }}
             >
               {item.icon}
-            </span>
+            </motion.span>
           ))}
         </div>
         <motion.div

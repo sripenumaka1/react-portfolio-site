@@ -906,3 +906,385 @@
 body, html {
   overflow-x: hidden;
 }
+
+/* ===========================
+   Orbital Projects Showcase
+   =========================== */
+.orbitalSection {
+  width: 100%;
+  padding: 80px 24px 120px;
+  position: relative;
+  overflow: visible;
+}
+
+.orbitalSubtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: -40px;
+  margin-bottom: 60px;
+}
+
+.orbitalContainer {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 750px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Orbit rings */
+.orbitRing {
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border: 2px dashed #4B5563;
+  border-radius: 50%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.orbitRingInner {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border: 1px dashed #4B5563;
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Lighter rings in dark mode */
+[data-theme="dark"] .orbitRing {
+  border-color: var(--color-gray-400);
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .orbitRingInner {
+  border-color: var(--color-gray-400);
+  opacity: 0.25;
+}
+
+/* Center profile */
+.orbitalCenter {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbitalProfileImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-primary);
+  box-shadow: 0 0 40px rgba(191, 161, 74, 0.5), 0 0 80px rgba(191, 161, 74, 0.3);
+}
+
+/* Orbiting projects container */
+.orbitingProjects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Individual orbiting project */
+.orbitingProject {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  margin-left: -80px;
+  margin-top: -80px;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.orbitingProjectInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-primary);
+  background: var(--bg-secondary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+              0 0 20px rgba(191, 161, 74, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.orbitingProjectInner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.orbitingProjectOverlay {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: max-content;
+  max-width: 180px;
+  padding: 8px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-400);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 20;
+}
+
+.orbitingProjectTitle {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.orbitingProject:hover .orbitingProjectInner {
+  transform: scale(1.1);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3),
+              0 0 40px rgba(191, 161, 74, 0.5);
+}
+
+.orbitingProject:hover .orbitingProjectInner img {
+  transform: scale(1.1);
+}
+
+.orbitingProject:hover .orbitingProjectOverlay {
+  opacity: 1;
+  transform: translateX(-50%) translateY(12px);
+}
+
+/* Project Modal */
+.projectModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.projectModalContent {
+  background: var(--bg-secondary);
+  border-radius: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4),
+              0 0 60px rgba(191, 161, 74, 0.3);
+  border: 1px solid var(--color-gray-400);
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--color-gray-400);
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modalClose:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modalImageWrapper {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.modalInfo {
+  padding: 32px;
+}
+
+.modalTitle {
+  color: var(--text-primary);
+  font-size: 28px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.modalDescription {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.7;
+  margin: 0 0 24px 0;
+}
+
+.modalTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.modalTag {
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  border: 2px solid;
+}
+
+.modalButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modalButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Orbital responsive */
+@media (max-width: 768px) {
+  .orbitalContainer {
+    height: 550px;
+  }
+  
+  .orbitRing {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .orbitRingInner {
+    width: 260px;
+    height: 260px;
+  }
+  
+  .orbitalCenter {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .orbitingProject {
+    width: 110px;
+    height: 110px;
+    margin-left: -55px;
+    margin-top: -55px;
+  }
+  
+  .modalImageWrapper {
+    height: 250px;
+  }
+  
+  .modalTitle {
+    font-size: 22px;
+  }
+  
+  .modalInfo {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orbitalContainer {
+    height: 450px;
+  }
+  
+  .orbitRing {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .orbitRingInner {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .orbitalCenter {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .orbitingProject {
+    width: 85px;
+    height: 85px;
+    margin-left: -42px;
+    margin-top: -42px;
+  }
+  
+  .orbitingProjectTitle {
+    font-size: 9px;
+  }
+  
+  .modalImageWrapper {
+    height: 200px;
+  }
+  
+  .modalInfo {
+    padding: 20px;
+  }
+  
+  .modalTitle {
+    font-size: 20px;
+  }
+  
+  .modalDescription {
+    font-size: 14px;
+  }
+}
