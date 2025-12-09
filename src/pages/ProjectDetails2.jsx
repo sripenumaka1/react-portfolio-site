@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectDetails from './ProjectDetails';
-import studyBuddy2Img from '../assets/images/studybuddy2.jpg';
+import studyBuddy2Img from '../assets/images/StudyBuddyBlue.png';
 
 const description = `StudyBuddy is a UI/UX project designed to help students connect, collaborate, and stay accountable in their studies. This Figma prototype focuses on intuitive navigation, group creation, task tracking, and real-time collaboration features to enhance the student learning experience.`;
 

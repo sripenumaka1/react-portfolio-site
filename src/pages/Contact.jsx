@@ -120,26 +120,62 @@ const Contact = () => {
       <LoadingBar isLoading={isLoading} />
       
       <main className={styles.main}>
-        <ScrollReveal className={styles.heroSection}>
+        <ScrollReveal className={styles.heroSection} duration={1.2}>
           <div className={styles.heroContent}>
-            <h1 className={styles.title}>Let's Work Together</h1>
-            <p className={styles.subtitle}>
+            <motion.h1 
+              className={styles.title}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >Let's Work Together</motion.h1>
+            <motion.p 
+              className={styles.subtitle}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
               I'm currently available for freelance projects and collaborations. 
               Let's create something meaningful together.
-            </p>
+            </motion.p>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal className={styles.contactSection}>
+        <ScrollReveal className={styles.contactSection} duration={1.2}>
           <div className={styles.contactContent}>
-            <div className={styles.contactInfo}>
-              <h2 className={styles.sectionTitle}>Get In Touch</h2>
-              <p className={styles.description}>
+            <motion.div 
+              className={styles.contactInfo}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.h2 
+                className={styles.sectionTitle}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              >Get In Touch</motion.h2>
+              <motion.p 
+                className={styles.description}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
                 Whether you have a project in mind, want to collaborate, or just want to say hello, 
                 I'd love to hear from you.
-              </p>
+              </motion.p>
               
-              <div className={styles.contactDetails}>
+              <motion.div 
+                className={styles.contactDetails}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <div className={styles.contactItem}>
                   <div className={styles.contactIcon}>📧</div>
                   <div>
@@ -169,8 +205,8 @@ const Contact = () => {
                     </a>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {submitted ? (
               <motion.div
@@ -197,7 +233,14 @@ const Contact = () => {
                 </button>
               </motion.div>
             ) : (
-              <form className={styles.contactForm} onSubmit={handleSubmit}>
+              <motion.form 
+                className={styles.contactForm} 
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
                     Name <span className={styles.required}>*</span>
@@ -302,7 +345,7 @@ const Contact = () => {
                     'Send Message'
                   )}
                 </button>
-              </form>
+              </motion.form>
             )}
           </div>
         </ScrollReveal>

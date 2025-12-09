@@ -8,26 +8,41 @@ const NotFound = () => {
     <div className={styles.container} id="main-content">
       <motion.div
         className={styles.content}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.div
           className={styles.number}
-          initial={{ scale: 0.5 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, type: 'spring' }}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           404
         </motion.div>
         
-        <h1 className={styles.title}>Page Not Found</h1>
+        <motion.h1 
+          className={styles.title}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        >Page Not Found</motion.h1>
         
-        <p className={styles.description}>
+        <motion.p 
+          className={styles.description}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           Oops! The page you're looking for doesn't exist. It might have been moved or deleted.
-        </p>
+        </motion.p>
         
-        <div className={styles.illustration}>
+        <motion.div 
+          className={styles.illustration}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
           <svg
             width="200"
             height="200"
@@ -51,9 +66,14 @@ const NotFound = () => {
               strokeLinecap="round"
             />
           </svg>
-        </div>
+        </motion.div>
         
-        <div className={styles.actions}>
+        <motion.div 
+          className={styles.actions}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Link to="/" className={styles.homeButton}>
             <svg
               width="20"
@@ -76,9 +96,14 @@ const NotFound = () => {
           <Link to="/portfolio" className={styles.portfolioButton}>
             View Portfolio
           </Link>
-        </div>
+        </motion.div>
         
-        <div className={styles.suggestions}>
+        <motion.div 
+          className={styles.suggestions}
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className={styles.suggestionsTitle}>You might be looking for:</p>
           <div className={styles.links}>
             <Link to="/" className={styles.link}>Home</Link>
@@ -86,7 +111,7 @@ const NotFound = () => {
             <Link to="/portfolio" className={styles.link}>Portfolio</Link>
             <Link to="/contact" className={styles.link}>Contact</Link>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

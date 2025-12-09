@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './MobileMenu.module.css';
+import ThemeToggle from './ThemeToggle';
 
 const MobileMenu = ({ isOpen, onClose }) => {
   const location = useLocation();
@@ -84,27 +85,30 @@ const MobileMenu = ({ isOpen, onClose }) => {
           >
             <div className={styles.menuHeader}>
               <h2 className={styles.menuTitle}>Menu</h2>
-              <button
-                className={styles.closeButton}
-                onClick={onClose}
-                aria-label="Close menu"
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              <div className={styles.menuHeaderActions}>
+                <ThemeToggle />
+                <button
+                  className={styles.closeButton}
+                  onClick={onClose}
+                  aria-label="Close menu"
                 >
-                  <path
-                    d="M18 6L6 18M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18 6L6 18M6 6L18 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <nav className={styles.nav}>

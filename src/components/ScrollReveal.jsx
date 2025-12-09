@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const defaultVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0 },
 };
 
 const ScrollReveal = ({
@@ -11,9 +11,9 @@ const ScrollReveal = ({
   as: Component = 'section',
   threshold = 0.15,
   margin = '0px',
-  once = false, // Changed default to false for fade in/out
+  once = true, // Changed to true for cleaner one-time animations
   delay = 0,
-  duration = 0.6,
+  duration = 1,
   variants = defaultVariants,
   contentClassName,
   contentStyle,

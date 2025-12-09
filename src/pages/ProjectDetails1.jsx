@@ -17,7 +17,7 @@ export default function ProjectDetails1() {
       category="Animation"
       description={description}
       liveDemoLink="/floating-goku"
-      prevProject={{ link: '/temple-redesign', title: 'Temple Redesign' }}
+      prevProject={{ link: '/temple-redesign', title: 'Local Temple Redesign' }}
       nextProject={{ link: '/project-details-2', title: 'Project Details 2' }}
     />
   );

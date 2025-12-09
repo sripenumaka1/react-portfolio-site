@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import ScrollReveal from "../components/ScrollReveal";
 import { Link } from "react-router-dom";
 // import heroImg from '../assets/images/hero.jpg'; // Remove static image
-import lumoraImg from '../assets/images/lumora.jpg';
-import sskdImg from '../assets/images/sskd.png';
+import lumoraImg from '../assets/images/Lumora.png';
+import sskdImg from '../assets/images/SSKD (2).png';
 import { useRef } from 'react';
 import { FaCode, FaPaintBrush, FaReact } from 'react-icons/fa';
 import { usePerformanceMonitor } from '../utils/performance';
@@ -13,37 +13,43 @@ import SEO from '../components/SEO';
 import { useTheme } from '../context/ThemeContext';
 
 
+// Slide from left animation variants - slow and elegant
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0 },
+};
+
 const heroVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } },
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1.2, delay: 0.2 } },
 };
 
 const buttonVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.5 } },
-  hover: { scale: 1.07, transition: { duration: 0.2 } },
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1.2, delay: 0.5 } },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
 const cardContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.18,
+      staggerChildren: 0.4,
+      delayChildren: 0.2,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } },
   hover: {
-    scale: 1.05,
     y: -12,
+    boxShadow: "0 20px 60px rgba(0,0,0,0.25), 0 0 60px rgba(191,169,122,0.8), 0 0 120px rgba(191,169,122,0.5)",
     transition: { 
-      duration: 0.35,
+      duration: 0.4,
       ease: [0.4, 0, 0.2, 1]
     },
-    boxShadow: "0 20px 60px rgba(0,0,0,0.25), 0 0 60px rgba(191,169,122,0.8), 0 0 120px rgba(191,169,122,0.5)",
   },
 };
 
@@ -167,9 +173,9 @@ export default function Home() {
         >
           {/* Hi I'm - fade in */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: "2.2rem",
               fontFamily: "Rubik, sans-serif",
@@ -249,9 +255,9 @@ export default function Home() {
           </div>
           {/* Tagline - fade in after name */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.2 }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 2.5, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: "1.5rem",
               fontFamily: "Rubik, sans-serif",
@@ -267,10 +273,10 @@ export default function Home() {
             Designing clean, intuitive, & purposeful experiences.
           </motion.div>
           <motion.button
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.7 }}
-            whileHover={{ scale: 1.07 }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 3.2, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ scale: 1.05 }}
             style={{
               background: "var(--color-dark)",
               color: "var(--color-light)",
@@ -303,7 +309,7 @@ export default function Home() {
           boxSizing: "border-box",
         }}
       >
-        <ScrollReveal>
+        <ScrollReveal variants={slideFromLeft} duration={1.2}>
           {/* Featured Projects Section */}
           <section
             style={{
@@ -316,79 +322,139 @@ export default function Home() {
               zIndex: 1,
             }}
           >
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                textAlign: "center",
+                textAlign: "left",
                 color: "var(--text-primary)",
-                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+                fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
                 fontFamily: "Rubik, sans-serif",
-                fontWeight: 400,
-                margin: "0 0 12px 0",
+                fontWeight: 500,
+                margin: "0 0 8px 0",
               }}
             >
               Featured Projects
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                textAlign: "center",
+                textAlign: "left",
                 color: "var(--text-secondary)",
-                fontSize: 16,
+                fontSize: 17,
                 fontFamily: "Manrope, sans-serif",
                 fontWeight: 400,
-                margin: "0 0 32px 0",
+                margin: "0 0 40px 0",
               }}
             >
-              A selection of my recent work showcasing minimal design principles and thoughtful user experiences!
-            </p>
+              A selection of my recent work showcasing minimal design principles and thoughtful user experiences.
+            </motion.p>
             <motion.div
               variants={cardContainerVariants}
               initial="hidden"
               animate="visible"
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                gap: 32,
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
                 width: "100%",
               }}
             >
-              {/* Project 1: Lumora */}
+              {/* Project 1: Lumora - Large Rectangular Card */}
               <Link to="/lumora" style={{textDecoration: 'none', perspective: 1000}}>
                 <motion.div
-                  variants={cardVariants}
-                  whileHover="hover"
-                  animate={{
-                    y: [0, -10, 0],
-                    boxShadow: [
-                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)",
-                      "0 10px 34px rgba(0,0,0,0.14), 0 0 40px rgba(191,169,122,0.60), 0 0 82px rgba(191,169,122,0.32)",
-                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)"
-                    ],
+                  initial={{ opacity: 0, x: -80 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    x: 0,
                   }}
-                  transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+                  viewport={{ once: true }}
+                  animate={{ 
+                    y: [0, -15, 0],
+                  }}
+                  whileHover={{
+                    y: -20,
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.2), 0 0 60px rgba(191,169,122,0.7), 0 0 100px rgba(191,169,122,0.4)",
+                  }}
+                  transition={{ 
+                    opacity: { duration: 1, delay: 0.6 },
+                    x: { duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                    boxShadow: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
+                  }}
                   style={{
                     background: "var(--bg-secondary)",
-                    borderRadius: 8,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 0 0 rgba(191,169,122,0), 0 0 0 rgba(191,169,122,0)",
+                    borderRadius: 20,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.08), 0 0 20px rgba(191,169,122,0.3)",
                     overflow: "hidden",
                     display: "flex",
-                    flexDirection: "column",
-                    height: 420,
+                    flexDirection: "row",
+                    height: 360,
                     cursor: "pointer",
+                    border: "1px solid var(--color-gray-300)",
                   }}
                 >
-                  <img
-                    src={lumoraImg}
-                    alt="Lumora Project"
-                    style={{ width: "100%", height: 200, objectFit: "cover", transition: "transform 0.3s" }}
-                  />
-                  <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div style={{ 
+                    width: "50%", 
+                    height: "100%", 
+                    overflow: "hidden",
+                    position: "relative"
+                  }}>
+                    <img
+                      src={lumoraImg}
+                      alt="Lumora Project"
+                      style={{ 
+                        width: "100%", 
+                        height: "100%", 
+                        objectFit: "cover", 
+                        transition: "transform 0.4s ease" 
+                      }}
+                    />
+                  </div>
+                  <div style={{ 
+                    width: "50%",
+                    padding: "48px 56px", 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center',
+                  }}>
+                    <div style={{
+                      display: "flex",
+                      gap: 10,
+                      marginBottom: 20,
+                    }}>
+                      <span style={{
+                        background: "var(--bg-tertiary)",
+                        color: "var(--text-secondary)",
+                        fontSize: 13,
+                        fontFamily: "Rubik, sans-serif",
+                        fontWeight: 500,
+                        padding: "8px 16px",
+                        borderRadius: 20,
+                      }}>UI/UX</span>
+                      <span style={{
+                        background: "var(--bg-tertiary)",
+                        color: "var(--text-secondary)",
+                        fontSize: 13,
+                        fontFamily: "Rubik, sans-serif",
+                        fontWeight: 500,
+                        padding: "8px 16px",
+                        borderRadius: 20,
+                      }}>Development</span>
+                    </div>
                     <h3
                       style={{
                         color: "var(--text-primary)",
-                        fontSize: 20,
+                        fontSize: 30,
                         fontFamily: "Rubik, sans-serif",
-                        fontWeight: 400,
-                        margin: "0 0 8px 0",
+                        fontWeight: 500,
+                        margin: "0 0 16px 0",
+                        lineHeight: 1.3,
                       }}
                     >
                       Lumora Landing Page
@@ -396,101 +462,172 @@ export default function Home() {
                     <p
                       style={{
                         color: "var(--text-secondary)",
-                        fontSize: 16,
+                        fontSize: 17,
                         fontFamily: "Open Sans, sans-serif",
                         fontWeight: 400,
-                        margin: "0 0 16px 0",
+                        margin: "0 0 24px 0",
+                        lineHeight: 1.7,
                       }}
                     >
-                      Lumora is a sleek, responsive landing page for a fictional home décor brand.
+                      A sleek, responsive landing page for a fictional home décor brand with modern aesthetics.
                     </p>
-                    <span
+                    <motion.span
+                      whileHover={{ 
+                        backgroundColor: "#D4AF7A",
+                        color: "#FFFFFF",
+                      }}
+                      transition={{ duration: 0.25 }}
                       style={{
-                        color: "var(--text-primary)",
+                        backgroundColor: "#1A1A1A",
+                        color: "#FFFFFF",
                         fontSize: 14,
                         fontFamily: "Rubik, sans-serif",
-                        fontWeight: 400,
-                        textDecoration: "underline",
+                        fontWeight: 500,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                        padding: "8px 14px",
+                        borderRadius: 6,
                         cursor: "pointer",
-                        transition: "color 0.2s",
+                        width: "fit-content",
                       }}
-                      onMouseOver={e => e.currentTarget.style.color = isDark ? '#D4AF7A' : '#85918B'}
-                      onMouseOut={e => e.currentTarget.style.color = isDark ? '#F1F5F9' : '#1A1A1A'}
                     >
-                      View Project
-                    </span>
+                      View Project →
+                    </motion.span>
                   </div>
                 </motion.div>
               </Link>
 
-              {/* Project 2: Temple Redesign */}
+              {/* Project 2: Temple Redesign - Large Rectangular Card (reversed) */}
               <Link to="/temple-redesign" style={{textDecoration: 'none', perspective: 1000}}>
                 <motion.div
-                  variants={cardVariants}
-                  whileHover="hover"
-                  animate={{
-                    y: [0, -10, 0],
-                    boxShadow: [
-                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)",
-                      "0 10px 34px rgba(0,0,0,0.14), 0 0 40px rgba(191,169,122,0.60), 0 0 82px rgba(191,169,122,0.32)",
-                      "0 3px 14px rgba(0,0,0,0.08), 0 0 18px rgba(191,169,122,0.36), 0 0 0 rgba(191,169,122,0.0)"
-                    ],
+                  initial={{ opacity: 0, x: -80 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    x: 0,
                   }}
-                  transition={{ duration: 5.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+                  viewport={{ once: true }}
+                  animate={{ 
+                    y: [0, -15, 0],
+                  }}
+                  whileHover={{
+                    y: -20,
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.2), 0 0 60px rgba(191,169,122,0.7), 0 0 100px rgba(191,169,122,0.4)",
+                  }}
+                  transition={{ 
+                    opacity: { duration: 1, delay: 1.1 },
+                    x: { duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] },
+                    y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                    boxShadow: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
+                  }}
                   style={{
                     background: "var(--bg-secondary)",
-                    borderRadius: 8,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04), 0 0 0 rgba(191,169,122,0), 0 0 0 rgba(191,169,122,0)",
+                    borderRadius: 20,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.08), 0 0 20px rgba(191,169,122,0.3)",
                     overflow: "hidden",
                     display: "flex",
-                    flexDirection: "column",
-                    height: 420,
+                    flexDirection: "row-reverse",
+                    height: 360,
                     cursor: "pointer",
+                    border: "1px solid var(--color-gray-300)",
                   }}
                 >
-                  <img
-                    src={sskdImg}
-                    alt="Temple Project"
-                    style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "top", transition: "transform 0.3s" }}
-                  />
-                  <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div style={{ 
+                    width: "50%", 
+                    height: "100%", 
+                    overflow: "hidden",
+                    position: "relative"
+                  }}>
+                    <img
+                      src={sskdImg}
+                      alt="Temple Project"
+                      style={{ 
+                        width: "100%", 
+                        height: "100%", 
+                        objectFit: "cover", 
+                        objectPosition: "top",
+                        transition: "transform 0.4s ease" 
+                      }}
+                    />
+                  </div>
+                  <div style={{ 
+                    width: "50%",
+                    padding: "48px 56px", 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center',
+                  }}>
+                    <div style={{
+                      display: "flex",
+                      gap: 10,
+                      marginBottom: 20,
+                    }}>
+                      <span style={{
+                        background: "var(--bg-tertiary)",
+                        color: "var(--text-secondary)",
+                        fontSize: 13,
+                        fontFamily: "Rubik, sans-serif",
+                        fontWeight: 500,
+                        padding: "8px 16px",
+                        borderRadius: 20,
+                      }}>UI/UX</span>
+                      <span style={{
+                        background: "var(--bg-tertiary)",
+                        color: "var(--text-secondary)",
+                        fontSize: 13,
+                        fontFamily: "Rubik, sans-serif",
+                        fontWeight: 500,
+                        padding: "8px 16px",
+                        borderRadius: 20,
+                      }}>Figma</span>
+                    </div>
                     <h3
                       style={{
                         color: "var(--text-primary)",
-                        fontSize: 20,
+                        fontSize: 30,
                         fontFamily: "Rubik, sans-serif",
-                        fontWeight: 400,
-                        margin: "0 0 8px 0",
+                        fontWeight: 500,
+                        margin: "0 0 16px 0",
+                        lineHeight: 1.3,
                       }}
                     >
-                      Shri Sai Kripa Dham Temple Website Redesign
+                      Local Temple Redesign
                     </h3>
                     <p
                       style={{
                         color: "var(--text-secondary)",
-                        fontSize: 14,
+                        fontSize: 17,
                         fontFamily: "Open Sans, sans-serif",
                         fontWeight: 400,
-                        margin: "0 0 16px 0",
+                        margin: "0 0 24px 0",
+                        lineHeight: 1.7,
                       }}
                     >
-                      Shri Sai Kripa Dham is a redesigned website for my local temple in Surrey, BC
+                      A complete redesign for Shri Sai Kripa Dham temple in Surrey, BC with improved UX.
                     </p>
-                    <span
+                    <motion.span
+                      whileHover={{ 
+                        backgroundColor: "#D4AF7A",
+                        color: "#FFFFFF",
+                      }}
+                      transition={{ duration: 0.25 }}
                       style={{
-                        color: "var(--text-primary)",
+                        backgroundColor: "#1A1A1A",
+                        color: "#FFFFFF",
                         fontSize: 14,
                         fontFamily: "Rubik, sans-serif",
-                        fontWeight: 400,
-                        textDecoration: "underline",
+                        fontWeight: 500,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                        padding: "8px 14px",
+                        borderRadius: 6,
                         cursor: "pointer",
-                        transition: "color 0.2s",
+                        width: "fit-content",
                       }}
-                      onMouseOver={e => e.currentTarget.style.color = isDark ? '#D4AF7A' : '#85918B'}
-                      onMouseOut={e => e.currentTarget.style.color = isDark ? '#F1F5F9' : '#1A1A1A'}
                     >
-                      View Project
-                    </span>
+                      View Project →
+                    </motion.span>
                   </div>
                 </motion.div>
               </Link>
@@ -499,7 +636,7 @@ export default function Home() {
         </ScrollReveal>
 
               {/* CTA Section */}
-        <ScrollReveal>
+        <ScrollReveal variants={slideFromLeft} duration={1.2}>
           <section
             style={{
               width: "100vw",
@@ -521,7 +658,11 @@ export default function Home() {
                 margin: "0 auto",
               }}
             >
-              <h2
+              <motion.h2
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   color: "var(--text-primary)",
                   fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
@@ -531,8 +672,12 @@ export default function Home() {
                 }}
               >
                 Interested in working together?
-              </h2>
-              <p
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   color: "var(--text-secondary)",
                   fontSize: 18,
@@ -542,12 +687,13 @@ export default function Home() {
                 }}
               >
                 I'm currently available for freelance projects and collaborations. Let's create something meaningful together.
-              </p>
+              </motion.p>
               <motion.button
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ scale: 1.05 }}
                 style={{
                   background: "var(--color-primary)",
                   color: isDark ? "#FFFFFF" : "#1A1A1A",

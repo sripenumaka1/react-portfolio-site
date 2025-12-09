@@ -2,22 +2,24 @@
 .wrapper {
   width: 100%;
   min-height: 100vh;
-  background: #F7F7F7;
+  background: var(--bg-primary);
   border-radius: 8px;
-  outline: 2px #CED4DA solid;
+  outline: 2px var(--color-gray-300) solid;
   outline-offset: -2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  transition: background-color var(--transition-base), outline-color var(--transition-base);
 }
 .headerBar {
   width: 100%;
   height: 76px;
-  background: white;
+  background: var(--bg-secondary);
   box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
   display: flex;
   align-items: center;
+  transition: background-color var(--transition-base);
 }
 .headerContent {
   width: 1280px;
@@ -27,11 +29,12 @@
   height: 28px;
 }
 .headerTitle {
-  color: #1A1A1A;
+  color: var(--text-primary);
   font-size: 18px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 28px;
+  transition: color var(--transition-base);
 }
 .heroSection {
   width: 100%;
@@ -41,21 +44,23 @@
   align-items: center;
 }
 .projectTitle {
-  color: #1A1A1A;
+  color: var(--text-primary);
   font-size: 60px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 60px;
   text-align: center;
+  transition: color var(--transition-base);
 }
 .projectSubtitle {
-  color: #BFBFBF;
+  color: var(--text-secondary);
   font-size: 20px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 28px;
   text-align: center;
   margin-top: 22px;
+  transition: color var(--transition-base);
 }
 .imageSection {
   width: 100%;
@@ -71,9 +76,10 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background: #fff;
+  background: var(--bg-secondary);
   border-radius: 32px;
   overflow: visible;
+  transition: background-color var(--transition-base);
 }
 .projectImage {
   width: 100%;
@@ -104,34 +110,38 @@
   margin-bottom: 32px;
 }
 .infoLabel {
-  color: #1A1A1A;
+  color: var(--text-primary);
   font-size: 20px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 28px;
+  transition: color var(--transition-base);
 }
 .infoValue {
-  color: #4B5563;
+  color: var(--text-secondary);
   font-size: 18px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 28px;
   margin-top: 12px;
+  transition: color var(--transition-base);
 }
 .toolsRow {
   display: flex;
   gap: 12px;
   margin-top: 12px;
+  flex-wrap: wrap;
 }
 .toolTag {
-  background: #1A1A1A;
-  color: white;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   font-size: 14px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   border-radius: 9999px;
   padding: 8px 24px;
   display: inline-block;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 .infoRight {
   flex: 1;
@@ -143,33 +153,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid var(--color-gray-300);
   padding: 16px 0;
+  transition: border-color var(--transition-base);
 }
 .infoSmallLabel {
-  color: #4B5563;
+  color: var(--text-secondary);
   font-size: 16px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 24px;
+  transition: color var(--transition-base);
 }
 .infoSmallValue {
-  color: #1A1A1A;
+  color: var(--text-primary);
   font-size: 16px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 24px;
+  transition: color var(--transition-base);
 }
 .descriptionSection {
   width: 896px;
   margin: 40px auto 0 auto;
 }
 .descriptionText {
-  color: rgba(26, 26, 26, 0.90);
+  color: var(--text-primary);
   font-size: 20px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
   line-height: 25px;
+  opacity: 0.9;
+  transition: color var(--transition-base);
 }
 .demoSection {
   width: 896px;
@@ -178,8 +193,8 @@
   justify-content: center;
 }
 .demoBtn {
-  background: #1A1A1A;
-  color: white;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   font-size: 18px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
@@ -188,10 +203,11 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 .demoBtn:hover {
-  background: #3B82F6;
+  background: #D4AF7A;
+  color: #1A1A1A;
 }
 .projectNavSection {
   width: 896px;
@@ -201,7 +217,7 @@
   align-items: center;
 }
 .projectNavPrev, .projectNavNext {
-  color: #BFBFBF;
+  color: var(--text-secondary);
   font-size: 16px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
@@ -210,13 +226,13 @@
   transition: color 0.2s;
 }
 .projectNavNext {
-  color: #1A1A1A;
+  color: var(--text-primary);
 }
 .projectNavPrev:hover, .projectNavNext:hover {
-  color: #3B82F6;
+  color: #D4AF7A;
 }
 .backLink {
-  color: #4B5563;
+  color: var(--text-secondary);
   font-size: 16px;
   font-family: Rubik, sans-serif;
   font-weight: 400;
@@ -225,7 +241,7 @@
   transition: color 0.2s, text-decoration 0.2s;
 }
 .backLink:hover {
-  color: #1A1A1A;
+  color: var(--text-primary);
   text-decoration: underline;
 }
 @media (max-width: 1000px) {

@@ -51,7 +51,7 @@ const About = () => {
         description="Learn more about Sri Penumaka, a web designer and frontend developer specializing in responsive, user-centered digital experiences."
       />
       <LoadingBar isLoading={isLoading} />
-      <ScrollReveal contentClassName={styles.aboutSection}>
+      <ScrollReveal contentClassName={styles.aboutSection} duration={1.2}>
         <div className={styles.aboutIconsBg}>
           {/* Floating circle particles */}
           {particles.map((p, idx) => (
@@ -108,9 +108,10 @@ const About = () => {
         </div>
         <motion.div
           className={styles.profileImage}
-          initial={{ scale: 0.9, boxShadow: '0 0 0 0 #bfa14a' }}
-          animate={{ scale: 1, boxShadow: '0 0 40px 0 #bfa14a, 0 0 80px 0 #ffe9a7' }}
-          transition={{ duration: 0.8, type: 'spring' }}
+          initial={{ opacity: 0, x: -60, scale: 0.9 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1, boxShadow: '0 0 40px 0 #bfa14a, 0 0 80px 0 #ffe9a7' }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           whileHover={{ scale: 1.05, boxShadow: '0 0 60px 10px #bfa14a, 0 0 120px 20px #ffe9a7' }}
         >
           <motion.img
@@ -125,17 +126,41 @@ const About = () => {
         </motion.div>
         
         <div className={styles.aboutContent}>
-          <div className={styles.sectionLabel}>About Me</div>
-          <h1 className={styles.mainHeading}>Hi, I'm Sri.</h1>
+          <motion.div 
+            className={styles.sectionLabel}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >About Me</motion.div>
+          <motion.h1 
+            className={styles.mainHeading}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >Hi, I'm Sri.</motion.h1>
           
-          <p className={styles.professionalSummary}>
+          <motion.p 
+            className={styles.professionalSummary}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
             I'm a web designer and frontend developer specializing in creating responsive, 
             user-centered digital experiences. My work spans UI/UX design, interactive web 
             development, and brand-focused landing pages. I'm passionate about translating 
             complex ideas into clean, accessible interfaces that serve real community needs.
-          </p>
+          </motion.p>
           
-          <div className={styles.careerGoalsBox}>
+          <motion.div 
+            className={styles.careerGoalsBox}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h3 className={styles.miniHeading}>Current Focus</h3>
             <p className={styles.careerGoalsText}>
               I'm building my expertise in frontend development and UI/UX design, with a focus 
@@ -143,21 +168,37 @@ const About = () => {
               organizations. I'm eager to contribute to projects where thoughtful design meets 
               real-world impact, while continuing to expand my technical skillset.
             </p>
-          </div>
+          </motion.div>
           
-          <p className={styles.descriptionText}>
+          <motion.p 
+            className={styles.descriptionText}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
             I'm a curious and creative individual who enjoys turning ideas into clean, engaging visuals. 
             Whether I'm designing a layout or building a website, I find fulfillment in creating things 
             that are both meaningful and easy to use.
-          </p>
+          </motion.p>
           
-          <p className={styles.personalText}>
+          <motion.p 
+            className={styles.personalText}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          >
             Outside of coding, I love playing sports like <b>basketball</b> and <b>soccer</b>, 
             lifting weights at the <b>gym</b>, and listening to or making <b>music</b>. 
             These activities keep me energized, creative, and balanced.
-          </p>
+          </motion.p>
           
           <motion.a
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
             href="/assets/resume.pdf"
             download="SriPenumaka_Resume.pdf"
             className={styles.resumeButton}
@@ -171,9 +212,21 @@ const About = () => {
       </ScrollReveal>
 
       {/* Current Projects Section */}
-      <ScrollReveal contentClassName={styles.currentProjects}>
-        <h2 className={styles.currentProjectsTitle}>Current Projects</h2>
-        <div className={styles.projectHighlight}>
+      <ScrollReveal contentClassName={styles.currentProjects} duration={1.2}>
+        <motion.h2 
+          className={styles.currentProjectsTitle}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        >Current Projects</motion.h2>
+        <motion.div 
+          className={styles.projectHighlight}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className={styles.wipBadge}>IN PROGRESS</div>
           <h3 className={styles.projectName}>
             Professional Janitorial Services Website Redesign
@@ -190,14 +243,26 @@ const About = () => {
             <span className={styles.skillTag}>Responsive Design</span>
             <span className={styles.skillTag}>Business Strategy</span>
           </div>
-        </div>
+        </motion.div>
       </ScrollReveal>
 
       {/* Core Values Section */}
-      <ScrollReveal contentClassName={styles.coreValues}>
-        <h2 className={styles.coreValuesTitle}>Core Values</h2>
+      <ScrollReveal contentClassName={styles.coreValues} duration={1.2}>
+        <motion.h2 
+          className={styles.coreValuesTitle}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        >Core Values</motion.h2>
         <div className={styles.valuesGrid}>
-          <div className={styles.valueCard}>
+          <motion.div 
+            className={styles.valueCard}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className={styles.valueIcon}>
               {/* Clock Icon */}
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -209,9 +274,15 @@ const About = () => {
             <p className={styles.valueDescription}>
               Delivering projects on time and meeting deadlines consistently
             </p>
-          </div>
+          </motion.div>
           
-          <div className={styles.valueCard}>
+          <motion.div 
+            className={styles.valueCard}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className={styles.valueIcon}>
               {/* Shield Icon */}
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -223,9 +294,15 @@ const About = () => {
             <p className={styles.valueDescription}>
               Taking ownership of decisions and being responsible for outcomes
             </p>
-          </div>
+          </motion.div>
           
-          <div className={styles.valueCard}>
+          <motion.div 
+            className={styles.valueCard}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className={styles.valueIcon}>
               {/* Arrow Up Icon */}
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -238,7 +315,7 @@ const About = () => {
             <p className={styles.valueDescription}>
               Always learning and evolving to stay ahead of industry trends
             </p>
-          </div>
+          </motion.div>
         </div>
       </ScrollReveal>
 

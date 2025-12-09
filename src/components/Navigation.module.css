@@ -58,6 +58,7 @@
 
 .navLinks {
   display: flex;
+  align-items: center;
   gap: 32px;
   font-family: 'Rubik', sans-serif;
   font-weight: var(--font-normal);

@@ -2,32 +2,39 @@ import React, { useState } from "react";
 import './Portfolio.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
-import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope, FaTimes, FaArrowRight } from 'react-icons/fa';
+import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope, FaTimes, FaArrowRight, FaStar, FaRocket, FaSatellite, FaMoon, FaSun } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiCss3, SiHtml5 } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
 import profileImg from '../assets/images/profile.jpg';
-import lumoraImg from '../assets/images/lumora3.png';
-import sskdImg from '../assets/images/sskd.png';
+import lumoraImg from '../assets/images/Lumora.png';
+import lumoraCircleImg from '../assets/images/LumoraCircle.png';
+import lumoraBrownImg from '../assets/images/LumoraBrown.png';
+import sskdImg from '../assets/images/SSKD (2).png';
+import sskdOrangeImg from '../assets/images/SSKDOrange.png';
 import floatingGokuImg from '../assets/images/floating-goku.png';
 import studyBuddyImg from '../assets/images/studybuddy.png';
+import studyBuddyModalImg from '../assets/images/StudyBuddyBlue.png';
 
 const projects = [
   {
     title: 'Lumora Landing Page',
     description: 'Lumora is a sleek, responsive landing page for a fictional home décor brand.',
     tags: ['UI/UX', 'Development'],
-    image: lumoraImg,
+    image: lumoraCircleImg,
+    modalImage: lumoraBrownImg,
     link: '/lumora',
     color: '#D4AF7A',
+    imagePosition: 'center 40%',
   },
   {
-    title: 'Temple Website Redesign',
+    title: 'Local Temple Redesign',
     description: 'Shri Sai Kripa Dham is a redesigned website for my local temple in Surrey, BC',
     tags: ['UI/UX', 'Figma', 'Prototyping'],
     image: sskdImg,
+    modalImage: sskdOrangeImg,
     link: '/temple-redesign',
     color: '#94A9B3',
   },
@@ -44,6 +51,7 @@ const projects = [
     description: 'A UI/UX Figma prototype to help students connect, collaborate, and stay accountable in their studies.',
     tags: ['UI/UX', 'Figma', 'Prototyping'],
     image: studyBuddyImg,
+    modalImage: studyBuddyModalImg,
     link: '/project-details-2',
     color: '#A855F7',
   },
@@ -69,6 +77,22 @@ const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
   delay: getRandom(0, 4),
   opacity: getRandom(0.1, 0.25),
 }));
+
+// Space-themed floating icons for orbital section
+const spaceIcons = [
+  { icon: <FaStar />, top: '8%', left: '12%', size: '1.8rem', duration: 5, delay: 0, color: '#FFD700' },
+  { icon: <FaStar />, top: '15%', left: '85%', size: '1.4rem', duration: 6, delay: 1, color: '#FFD700' },
+  { icon: <FaRocket />, top: '25%', left: '8%', size: '2.2rem', duration: 7, delay: 0.5, color: '#F97316' },
+  { icon: <FaSatellite />, top: '12%', left: '70%', size: '1.8rem', duration: 6, delay: 1.5, color: '#60A5FA' },
+  { icon: <FaMoon />, top: '75%', left: '15%', size: '2rem', duration: 5.5, delay: 0.8, color: '#E2E8F0' },
+  { icon: <FaStar />, top: '80%', left: '80%', size: '1.6rem', duration: 5, delay: 2, color: '#FFD700' },
+  { icon: <FaStar />, top: '60%', left: '5%', size: '1.2rem', duration: 4.5, delay: 1.2, color: '#FBBF24' },
+  { icon: <FaRocket />, top: '85%', left: '60%', size: '1.8rem', duration: 6.5, delay: 0.3, color: '#F97316' },
+  { icon: <FaSatellite />, top: '40%', left: '92%', size: '1.5rem', duration: 5.8, delay: 1.8, color: '#60A5FA' },
+  { icon: <FaStar />, top: '50%', left: '3%', size: '1.3rem', duration: 4.8, delay: 2.2, color: '#FFD700' },
+  { icon: <FaMoon />, top: '20%', left: '45%', size: '1.2rem', duration: 6.2, delay: 0.7, color: '#CBD5E1' },
+  { icon: <FaStar />, top: '90%', left: '25%', size: '1.5rem', duration: 5.3, delay: 1.4, color: '#FBBF24' },
+];
 
 const Portfolio = () => {
   const { isLoading } = usePerformanceMonitor('Portfolio');
@@ -104,7 +128,7 @@ const Portfolio = () => {
       <LoadingBar isLoading={isLoading} />
       
       {/* Hero Section */}
-      <ScrollReveal>
+      <ScrollReveal duration={1.2}>
         <section className="heroSection">
           <motion.div
             style={{
@@ -172,27 +196,51 @@ const Portfolio = () => {
           </div>
           <motion.div
             className="heroContent"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="heroTitle">Web Design & Development</h1>
-            <p className="heroSubtitle">
+            <motion.h1 
+              className="heroTitle"
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >Web Design & Development</motion.h1>
+            <motion.p 
+              className="heroSubtitle"
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
               Creating intuitive, responsive, and visually compelling digital experiences that connect brands with their audiences.
-            </p>
+            </motion.p>
           </motion.div>
         </section>
       </ScrollReveal>
 
       {/* Technical Expertise Section */}
-      <ScrollReveal>
+      <ScrollReveal duration={1.2}>
         <section className="techSection">
-          <h2 className="techTitle">Technical Expertise</h2>
+          <motion.h2 
+            className="techTitle"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+          >Technical Expertise</motion.h2>
           <div className="techGrid">
-            {techStack.map((tech) => (
+            {techStack.map((tech, index) => (
               <motion.div
                 className="techCard"
                 key={tech.name}
+                initial={{ opacity: 0, x: 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.3 + index * 0.15, 
+                  ease: [0.22, 1, 0.36, 1] 
+                }}
                 whileHover={{ 
                   scale: 1.15,
                   rotate: [0, -10, 10, -5, 5, 0],
@@ -216,12 +264,57 @@ const Portfolio = () => {
       </ScrollReveal>
 
       {/* Orbital Projects Showcase */}
-      <ScrollReveal>
+      <ScrollReveal duration={1.2}>
         <section className="orbitalSection">
-          <h2 className="projectsTitle">My Portfolio</h2>
-          <p className="orbitalSubtitle">Click on a project to explore</p>
+          <motion.h2 
+            className="projectsTitle"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+          >My Portfolio</motion.h2>
+          <motion.p 
+            className="orbitalSubtitle"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >Click on a project to explore</motion.p>
           
           <div className="orbitalContainer">
+            {/* Floating space icons */}
+            {spaceIcons.map((item, idx) => (
+              <motion.div
+                key={`space-icon-${idx}`}
+                initial={{ opacity: 0 }}
+                animate={{
+                  y: [0, -20, -10, -25, 0],
+                  x: [0, 10, -8, 5, 0],
+                  opacity: [0.5, 0.8, 0.6, 0.8, 0.5],
+                  rotate: [0, 5, -5, 3, 0],
+                }}
+                transition={{
+                  duration: item.duration,
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  ease: 'easeInOut',
+                  delay: item.delay,
+                }}
+                style={{
+                  position: 'absolute',
+                  top: item.top,
+                  left: item.left,
+                  fontSize: item.size,
+                  color: item.color,
+                  filter: `drop-shadow(0 0 12px ${item.color}80) drop-shadow(0 0 24px ${item.color}40)`,
+                  pointerEvents: 'none',
+                  zIndex: 1,
+                }}
+              >
+                {item.icon}
+              </motion.div>
+            ))}
+
             {/* Floating particles in orbital area */}
             {particles.map((p, idx) => (
               <motion.div
@@ -321,7 +414,7 @@ const Portfolio = () => {
                       className="orbitingProjectInner"
                       style={{ borderColor: project.color }}
                     >
-                      <img src={project.image} alt={project.title} />
+                      <img src={project.image} alt={project.title} style={project.imagePosition ? { objectPosition: project.imagePosition } : {}} />
                     </div>
                     <div className="orbitingProjectOverlay">
                       <span className="orbitingProjectTitle">{project.title}</span>
@@ -356,9 +449,9 @@ const Portfolio = () => {
                   
                   <div className="modalImageWrapper">
                     <img 
-                      src={projects[focusedProject].image} 
+                      src={projects[focusedProject].modalImage || projects[focusedProject].image} 
                       alt={projects[focusedProject].title}
-                      className="modalImage"
+                      className={`modalImage ${projects[focusedProject].title === 'StudyBuddy' ? 'modalImageCropTop' : ''}`}
                     />
                   </div>
                   
@@ -395,14 +488,32 @@ const Portfolio = () => {
       </ScrollReveal>
 
       {/* CTA Section */}
-      <ScrollReveal>
+      <ScrollReveal duration={1.2}>
         <section className="ctaSection">
           <div className="ctaContent">
-            <h2 className="ctaTitle">Let's Create Something Amazing Together</h2>
-            <p className="ctaSubtitle">
+            <motion.h2 
+              className="ctaTitle"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+            >Let's Create Something Amazing Together</motion.h2>
+            <motion.p 
+              className="ctaSubtitle"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-            </p>
-            <div className="ctaButtons">
+            </motion.p>
+            <motion.div 
+              className="ctaButtons"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
               <motion.a
                 href="https://www.linkedin.com/in/sri-datta-penumaka-693143328/"
                 target="_blank"
@@ -425,7 +536,7 @@ const Portfolio = () => {
                 Contact Me
                 <FaEnvelope size={18} />
               </motion.a>
-            </div>
+            </motion.div>
           </div>
         </section>
       </ScrollReveal>

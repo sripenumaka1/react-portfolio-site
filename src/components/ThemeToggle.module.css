@@ -1,40 +1,87 @@
-.themeToggle {
-  background: var(--bg-secondary);
+.toggleSwitch {
+  position: relative;
+  width: 64px;
+  height: 32px;
+  background: var(--bg-tertiary);
   border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius-full);
-  width: 44px;
-  height: 44px;
+  border-radius: 50px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
+  justify-content: space-between;
+  padding: 4px 6px;
+  transition: all 0.3s ease;
 }
 
-.themeToggle:hover {
-  background: var(--bg-tertiary);
-  box-shadow: var(--shadow-md);
+.toggleSwitch:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(191, 161, 74, 0.15);
 }
 
-.themeToggle:focus-visible {
+.toggleSwitch:focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-.iconWrapper {
+.toggleKnob {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #D4AF7A;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  left: 4px;
+  transition: left 0.3s ease;
+}
+
+/* Dark mode - move knob to right */
+[data-theme="dark"] .toggleKnob {
+  left: calc(100% - 28px);
+}
+
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  z-index: 1;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.sunIcon {
+  color: var(--text-secondary);
+}
+
+.moonIcon {
+  color: var(--text-secondary);
+}
+
+/* Light mode: sun is active */
+[data-theme="light"] .sunIcon {
+  color: var(--color-accent);
+}
+
+/* Dark mode: moon is active */
+[data-theme="dark"] .moonIcon {
+  color: var(--color-accent);
 }
 
 @media (max-width: 768px) {
-  .themeToggle {
-    width: 40px;
-    height: 40px;
+  .toggleSwitch {
+    width: 56px;
+    height: 28px;
+  }
+
+  .toggleKnob {
+    width: 20px;
+    height: 20px;
+  }
+
+  [data-theme="dark"] .toggleKnob {
+    left: calc(100% - 24px);
+  }
+
+  .icon svg {
+    width: 12px;
+    height: 12px;
   }
 }
-

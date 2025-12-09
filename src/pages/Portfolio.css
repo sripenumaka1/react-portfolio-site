@@ -1027,6 +1027,7 @@ body, html {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
@@ -1140,6 +1141,10 @@ body, html {
   height: 100%;
   object-fit: cover;
   object-position: top;
+}
+
+.modalImageCropTop {
+  object-position: center 10%;
 }
 
 .modalInfo {

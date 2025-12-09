@@ -41,6 +41,12 @@
   margin: 0;
 }
 
+.menuHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
 .closeButton {
   background: transparent;
   border: none;

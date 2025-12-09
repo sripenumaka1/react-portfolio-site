@@ -25,7 +25,7 @@ const Navigation = () => {
             <span className={styles.logoText}>SRI PENUMAKA</span>
           </Link>
           
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with Theme Toggle */}
           <div className={styles.navLinks}>
             <Link
               to="/"
@@ -55,11 +55,11 @@ const Navigation = () => {
             >
               Contact
             </Link>
+            <ThemeToggle />
           </div>
 
-          {/* Right Side Actions */}
+          {/* Right Side Actions (Mobile) */}
           <div className={styles.navActions}>
-            <ThemeToggle />
             
             {/* Hamburger Menu Button (Mobile) */}
             <button
