@@ -11,6 +11,7 @@ import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
 import { useTheme } from '../context/ThemeContext';
+import styles from './Home.module.css';
 
 
 // Slide from left animation variants - slow and elegant
@@ -122,12 +123,19 @@ function CinematicFadeIn({ text, ...props }) {
 
 export default function Home() {
   const [showName, setShowName] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { isLoading } = usePerformanceMonitor('Home');
   const { isDark } = useTheme();
   
   useEffect(() => {
     const timer = setTimeout(() => setShowName(true), 700); // match fade-in duration of Hi I'm
-    return () => clearTimeout(timer);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
   return (
     <>
@@ -199,6 +207,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 1, delay: 0.5, hover: { duration: 0.3 } }}
+          className={styles.heroCornerIcon}
           style={{
             position: 'absolute',
             bottom: 0,
@@ -206,13 +215,13 @@ export default function Home() {
             zIndex: 1,
             pointerEvents: 'auto',
             overflow: 'hidden',
-            width: '280px',
-            height: '280px',
+            width: 'clamp(120px, 25vw, 280px)',
+            height: 'clamp(120px, 25vw, 280px)',
             cursor: 'default',
           }}
         >
-          <SiFigma 
-            size={280} 
+            <SiFigma 
+            size={isMobile ? 120 : 280}
             style={{
               position: 'absolute',
               bottom: '-40px',
@@ -229,6 +238,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 1, delay: 0.7, hover: { duration: 0.3 } }}
+          className={styles.heroCornerIcon}
           style={{
             position: 'absolute',
             bottom: 0,
@@ -236,13 +246,13 @@ export default function Home() {
             zIndex: 1,
             pointerEvents: 'auto',
             overflow: 'hidden',
-            width: '280px',
-            height: '280px',
+            width: 'clamp(120px, 25vw, 280px)',
+            height: 'clamp(120px, 25vw, 280px)',
             cursor: 'default',
           }}
         >
           <SiJavascript 
-            size={280} 
+            size={isMobile ? 120 : 280} 
             style={{
               position: 'absolute',
               bottom: '-40px',
@@ -259,6 +269,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 1, delay: 0.6, hover: { duration: 0.3 } }}
+          className={styles.heroCornerIconReact}
           style={{
             position: 'absolute',
             top: 0,
@@ -266,13 +277,13 @@ export default function Home() {
             zIndex: 1,
             pointerEvents: 'auto',
             overflow: 'hidden',
-            width: '250px',
-            height: '250px',
+            width: 'clamp(100px, 22vw, 250px)',
+            height: 'clamp(100px, 22vw, 250px)',
             cursor: 'default',
           }}
         >
           <SiReact 
-            size={250} 
+            size={isMobile ? 100 : 250} 
             style={{
               position: 'absolute',
               top: '-60px',
@@ -302,14 +313,14 @@ export default function Home() {
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              fontSize: "2.2rem",
-              fontFamily: "Rubik, sans-serif",
-              fontWeight: 400,
-              color: 'var(--text-primary)',
-              marginBottom: 0,
-              letterSpacing: 1,
-            }}
+          style={{
+            fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+            fontFamily: "Rubik, sans-serif",
+            fontWeight: 400,
+            color: 'var(--text-primary)',
+            marginBottom: 0,
+            letterSpacing: 1,
+          }}
           >
             Hi, I'm
           </motion.div>
@@ -359,21 +370,21 @@ export default function Home() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              style={{
-                fontSize: "clamp(4rem, 9vw, 6.5rem)",
-                fontFamily: "'Montserrat', sans-serif",
-                fontWeight: 900,
-                color: 'var(--text-primary)',
-                margin: 0,
-                lineHeight: 1.08,
-                letterSpacing: 2,
-                zIndex: 2,
-                position: 'relative',
-                textAlign: 'left',
-                textTransform: 'uppercase',
-                overflow: 'visible',
-                display: 'inline-block',
-              }}
+          style={{
+            fontSize: "clamp(4rem, 9vw, 6.5rem)",
+            fontFamily: "'Rubik', sans-serif",
+            fontWeight: 600,
+            color: 'var(--text-primary)',
+            margin: 0,
+            lineHeight: 1.08,
+            letterSpacing: 2,
+            zIndex: 2,
+            position: 'relative',
+            textAlign: 'left',
+            textTransform: 'uppercase',
+            overflow: 'visible',
+            display: 'inline-block',
+          }}
               className="hero-name-glow"
             >
               {showName && <CinematicFadeIn text={"SRI PENUMAKA"} />}
@@ -385,7 +396,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontSize: "1.5rem",
+              fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
               fontFamily: "Rubik, sans-serif",
               fontWeight: 400,
               color: 'var(--text-primary)',
@@ -407,8 +418,9 @@ export default function Home() {
               background: "var(--color-dark)",
               color: "var(--color-light)",
               fontFamily: "Rubik, sans-serif",
-              fontSize: 18,
-              padding: "14px 40px",
+              fontSize: "clamp(16px, 2vw, 18px)",
+              padding: "clamp(12px, 2vw, 14px) clamp(32px, 4vw, 40px)",
+              minHeight: "44px",
               border: "none",
               borderRadius: 8,
               boxShadow: "0px 4px 12px rgba(0,0,0,0.08)",
@@ -442,7 +454,7 @@ export default function Home() {
               width: "100%",
               maxWidth: 1248,
               margin: "0 auto 48px auto",
-              padding: "0 5vw",
+              padding: "0 clamp(20px, 5vw, 80px)",
               boxSizing: "border-box",
               position: "relative",
               zIndex: 1,
@@ -478,7 +490,7 @@ export default function Home() {
                 margin: "0 0 40px 0",
               }}
             >
-              A selection of my recent work showcasing minimal design principles and thoughtful user experiences.
+              A selection of my recent work showcasing design principles and thoughtful user experiences.
             </motion.p>
             <motion.div
               variants={cardContainerVariants}
@@ -769,7 +781,7 @@ export default function Home() {
               marginLeft: "calc(-50vw + 50%)",
               marginRight: "calc(-50vw + 50%)",
             padding: "64px 2rem",
-            background: "var(--bg-tertiary)",
+            background: "transparent",
               boxSizing: "border-box",
               textAlign: "center",
               borderTop: "1px solid rgba(0,0,0,0.05)",

@@ -4,7 +4,7 @@ import profileImg from '../assets/images/profile.jpg';
 import resumePdf from '../assets/Sri Penumaka Resume.pdf';
 import { motion } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
-import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell, FaDownload } from 'react-icons/fa';
+import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell, FaDownload, FaRocket, FaLightbulb, FaBook, FaCode, FaPalette, FaUsers, FaHeart, FaEye, FaMagic, FaGraduationCap, FaSchool, FaLaptopCode, FaPaintBrush } from 'react-icons/fa';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
@@ -48,7 +48,7 @@ const About = () => {
   return (
     <div className={styles.container}>
       <SEO 
-        title="About Me"
+        title="About"
         description="Learn more about Sri Penumaka, a web designer and frontend developer specializing in responsive, user-centered digital experiences."
       />
       <LoadingBar isLoading={isLoading} />
@@ -320,66 +320,265 @@ const About = () => {
         </div>
       </ScrollReveal>
 
-      {/* CTA Section */}
-      <ScrollReveal contentClassName={styles.ctaSection}
-        style={{
-          width: "100vw",
-          marginLeft: "calc(-50vw + 50%)",
-          marginRight: "calc(-50vw + 50%)",
-          padding: "48px 2rem",
-          background: "var(--bg-tertiary)",
-          boxSizing: "border-box",
-          textAlign: "center",
-          borderTop: "1px solid var(--color-gray-400)",
-          borderBottom: "1px solid var(--color-gray-400)",
-          position: "relative",
-          zIndex: 1,
+      {/* Design Philosophy Section */}
+      <ScrollReveal 
+        contentClassName={styles.philosophySection} 
+        duration={1.2}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 }
         }}
       >
-        <div
-          style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "1.5rem"
-          }}
+        <motion.h2 
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* View LinkedIn Button on the left */}
-          <a
-            href="https://www.linkedin.com/in/sri-datta-penumaka-693143328/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.viewLinkedInBtn}
+          <FaLightbulb style={{ marginRight: '12px', color: 'var(--color-secondary)' }} />
+          Design Philosophy
+        </motion.h2>
+        <div className={styles.philosophyGrid}>
+          <motion.div 
+            className={styles.philosophyCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -5, transition: { duration: 0.3 } }}
           >
-            View LinkedIn
-          </a>
+            <div className={styles.philosophyIcon}>
+              <FaUsers size={28} />
+            </div>
+            <h3 className={styles.philosophyTitle}>User-Centered</h3>
+            <p className={styles.philosophyText}>
+              Every design decision starts with understanding the user's needs, goals, and context.
+            </p>
+          </motion.div>
 
-          {/* Socials on the right */}
-          <div style={{ display: "flex", gap: "1rem" }}>
-            {/* Email Button */}
-            <a
-              href="mailto:sridattapenumaka@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-              title="Email"
-            >
-              &#9993;
-            </a>
-            {/* GitHub Button */}
-            <a
-              href="https://github.com/sripenumaka1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-              title="GitHub"
-            >
-              gh
-            </a>
-          </div>
+          <motion.div 
+            className={styles.philosophyCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -5, transition: { duration: 0.3 } }}
+          >
+            <div className={styles.philosophyIcon}>
+              <FaEye size={28} />
+            </div>
+            <h3 className={styles.philosophyTitle}>Simplicity First</h3>
+            <p className={styles.philosophyText}>
+              Less is more. I believe in clean, intuitive interfaces that don't overwhelm users.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className={styles.philosophyCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -5, transition: { duration: 0.3 } }}
+          >
+            <div className={styles.philosophyIcon}>
+              <FaHeart size={28} />
+            </div>
+            <h3 className={styles.philosophyTitle}>Meaningful Impact</h3>
+            <p className={styles.philosophyText}>
+              Design should solve real problems and create value for both users and businesses.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className={styles.philosophyCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -5, transition: { duration: 0.3 } }}
+          >
+            <div className={styles.philosophyIcon}>
+              <FaMagic size={28} />
+            </div>
+            <h3 className={styles.philosophyTitle}>Continuous Evolution</h3>
+            <p className={styles.philosophyText}>
+              Great design is never finished. I iterate, learn, and refine based on feedback and data.
+            </p>
+          </motion.div>
+        </div>
+      </ScrollReveal>
+
+      {/* How I Became Interested in Design Section */}
+      <ScrollReveal contentClassName={styles.journeySection} duration={1.2}>
+        <motion.h2 
+          className={styles.sectionTitle}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <FaRocket style={{ marginRight: '12px', color: 'var(--color-secondary)' }} />
+          How I Became Interested in Design
+        </motion.h2>
+        
+        <div className={styles.journeyTimeline}>
+          {/* High School Media Arts */}
+          <motion.div 
+            className={styles.journeyStep}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className={styles.journeyIconWrapper}>
+              <motion.div 
+                className={styles.journeyIcon}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <FaSchool size={32} />
+              </motion.div>
+              <motion.div 
+                className={styles.timelineLine}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'top' }}
+              />
+            </div>
+            <div className={styles.journeyContent}>
+              <div className={styles.journeyYear}>Grade 8 - 12</div>
+              <h3 className={styles.journeyTitle}>High School Media Arts</h3>
+              <p className={styles.journeyText}>
+                My journey into design started in high school when I discovered Media Arts. 
+                From grade 8 through 12, I found myself drawn to creating visuals, experimenting 
+                with layouts, and bringing ideas to life through design. It was during these 
+                formative years that I realized I had a passion for visual storytelling.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Yearbook Team */}
+          <motion.div 
+            className={styles.journeyStep}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className={styles.journeyIconWrapper}>
+              <motion.div 
+                className={styles.journeyIcon}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <FaBook size={32} />
+              </motion.div>
+              <motion.div 
+                className={styles.timelineLine}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'top' }}
+              />
+            </div>
+            <div className={styles.journeyContent}>
+              <div className={styles.journeyYear}>Grade 12</div>
+              <h3 className={styles.journeyTitle}>Yearbook Team</h3>
+              <p className={styles.journeyText}>
+                In my final year of high school, I joined the yearbook team. This experience 
+                was a game-changer for me. Working on layouts, choosing typography, and 
+                organizing content taught me that design wasn't just about making things 
+                look pretty—it was about creating meaningful experiences and telling stories 
+                that mattered. I loved the collaborative process and seeing our work come 
+                together in print.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* BCIT Program */}
+          <motion.div 
+            className={styles.journeyStep}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className={styles.journeyIconWrapper}>
+              <motion.div 
+                className={styles.journeyIcon}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <FaGraduationCap size={32} />
+              </motion.div>
+              <motion.div 
+                className={styles.timelineLine}
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'top' }}
+              />
+            </div>
+            <div className={styles.journeyContent}>
+              <div className={styles.journeyYear}>BCIT</div>
+              <h3 className={styles.journeyTitle}>New Media Design and Web Development</h3>
+              <p className={styles.journeyText}>
+                After high school, I enrolled in BCIT's New Media Design and Web Development 
+                program, and that's when everything clicked. The program opened my eyes to 
+                the development side of design—I discovered how much I loved bringing designs 
+                to life through code. Learning HTML, CSS, and JavaScript felt like unlocking 
+                a superpower. I could now create interactive experiences, not just static 
+                layouts.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Specialization */}
+          <motion.div 
+            className={styles.journeyStep}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className={styles.journeyIconWrapper}>
+              <motion.div 
+                className={styles.journeyIcon}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <FaLaptopCode size={32} />
+              </motion.div>
+            </div>
+            <div className={styles.journeyContent}>
+              <div className={styles.journeyYear}>Today</div>
+              <h3 className={styles.journeyTitle}>Specializing in Development</h3>
+              <p className={styles.journeyText}>
+                The program also deepened my interest in UX/UI design. I learned how user 
+                research, wireframing, and prototyping could make digital products more 
+                intuitive and meaningful. But it was the combination of design thinking 
+                and development skills that really excited me. I realized I wanted to 
+                specialize in development—to be the bridge between beautiful designs 
+                and functional, accessible websites. Today, I combine my design background 
+                with my coding skills to create digital experiences that are both visually 
+                compelling and technically sound.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </ScrollReveal>
     </div>

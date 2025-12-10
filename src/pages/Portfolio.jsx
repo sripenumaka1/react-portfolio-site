@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './Portfolio.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
-import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope, FaTimes, FaArrowRight, FaStar, FaRocket, FaSatellite, FaMoon, FaSun } from 'react-icons/fa';
+import { FaPaintBrush, FaCode, FaBolt, FaHtml5, FaCss3Alt, FaJs, FaFigma, FaMagic, FaReact, FaLinkedin, FaEnvelope, FaTimes, FaArrowRight, FaStar, FaRocket, FaSatellite, FaMoon, FaSun, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiCss3, SiHtml5 } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import { usePerformanceMonitor } from '../utils/performance';
@@ -26,6 +26,7 @@ const projects = [
     image: lumoraCircleImg,
     modalImage: lumoraBrownImg,
     link: '/lumora',
+    demoLink: 'https://lumora.sripenumaka.ca/',
     color: '#D4AF7A',
     imagePosition: 'center 40%',
   },
@@ -36,6 +37,7 @@ const projects = [
     image: sskdImg,
     modalImage: sskdOrangeImg,
     link: '/temple-redesign',
+    demoLink: 'https://www.figma.com/proto/1o9y37yCT4jYgfEVZ6EMfn/UX-UI-Final-Project-HiFi-Designs?node-id=0-1&t=wYlZdSgFGSIMQHsH-1',
     color: '#94A9B3',
   },
   {
@@ -44,6 +46,7 @@ const projects = [
     tags: ['HTML5', 'CSS', 'Animation'],
     image: floatingGokuImg,
     link: '/project-details-1',
+    demoLink: '/floating-goku',
     color: '#F97316',
   },
   {
@@ -53,6 +56,7 @@ const projects = [
     image: studyBuddyImg,
     modalImage: studyBuddyModalImg,
     link: '/project-details-2',
+    demoLink: 'https://www.figma.com/proto/6G0R0UvyuFBzt05v8RXMmy/StudyBuddy?node-id=2-15&t=ltalRjdFXz5m3kJS-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
     color: '#A855F7',
   },
 ];
@@ -92,6 +96,14 @@ const spaceIcons = [
   { icon: <FaStar />, top: '50%', left: '3%', size: '1.3rem', duration: 4.8, delay: 2.2, color: '#FFD700' },
   { icon: <FaMoon />, top: '20%', left: '45%', size: '1.2rem', duration: 6.2, delay: 0.7, color: '#CBD5E1' },
   { icon: <FaStar />, top: '90%', left: '25%', size: '1.5rem', duration: 5.3, delay: 1.4, color: '#FBBF24' },
+  { icon: <FaStar />, top: '30%', left: '55%', size: '1.1rem', duration: 5.7, delay: 2.5, color: '#FFD700' },
+  { icon: <FaSatellite />, top: '65%', left: '35%', size: '1.6rem', duration: 6.3, delay: 0.9, color: '#60A5FA' },
+  { icon: <FaStar />, top: '45%', left: '75%', size: '1.3rem', duration: 4.9, delay: 1.7, color: '#FBBF24' },
+  { icon: <FaRocket />, top: '55%', left: '20%', size: '1.9rem', duration: 7.2, delay: 0.4, color: '#F97316' },
+  { icon: <FaMoon />, top: '35%', left: '30%', size: '1.4rem', duration: 5.6, delay: 1.1, color: '#CBD5E1' },
+  { icon: <FaStar />, top: '70%', left: '50%', size: '1.2rem', duration: 5.1, delay: 2.8, color: '#FFD700' },
+  { icon: <FaSatellite />, top: '18%', left: '25%', size: '1.7rem', duration: 6.8, delay: 0.6, color: '#60A5FA' },
+  { icon: <FaStar />, top: '88%', left: '45%', size: '1.4rem', duration: 5.4, delay: 1.9, color: '#FBBF24' },
 ];
 
 const Portfolio = () => {
@@ -375,11 +387,18 @@ const Portfolio = () => {
             {/* Orbiting Projects */}
             <motion.div
               className="orbitingProjects"
-              animate={{ rotate: isPaused ? 0 : 360 }}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: 1,
+                rotate: isPaused ? 0 : 360 
+              }}
               transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: 'linear',
+                opacity: { duration: 0.6, delay: 0.2 },
+                rotate: {
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: 'linear',
+                },
               }}
               style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
             >
@@ -399,8 +418,8 @@ const Portfolio = () => {
                       rotate: isPaused ? 0 : -360,
                     }}
                     transition={{
-                      opacity: { duration: 0.6, delay: 0.4 + index * 0.1, ease: 'easeOut' },
-                      rotate: { duration: 30, repeat: Infinity, ease: 'linear' },
+                      opacity: { duration: 0.8, delay: 0.4 + index * 0.15, ease: 'easeOut' },
+                      rotate: { duration: 30, repeat: Infinity, ease: 'linear', delay: 0 },
                     }}
                     whileHover={{ 
                       scale: 1.15,
@@ -469,14 +488,29 @@ const Portfolio = () => {
                       ))}
                     </div>
                     
-                    <Link 
-                      to={projects[focusedProject].link} 
-                      className="modalButton"
-                      style={{ background: projects[focusedProject].color }}
-                    >
-                      View Project
-                      <FaArrowRight />
-                    </Link>
+                    <div className="modalButtons">
+                      <Link 
+                        to={projects[focusedProject].link} 
+                        className="modalButton"
+                        style={{ background: projects[focusedProject].color }}
+                      >
+                        View Project
+                        <FaArrowRight />
+                      </Link>
+                      
+                      {projects[focusedProject].demoLink && (
+                        <a 
+                          href={projects[focusedProject].demoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="modalButton modalButtonDemo"
+                          style={{ background: projects[focusedProject].color }}
+                        >
+                          View Live Demo
+                          <FaExternalLinkAlt />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>

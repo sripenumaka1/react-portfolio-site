@@ -51,6 +51,7 @@ const ScrollReveal = ({
       variants={variants}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
       className={contentClassName ? undefined : className}
+      style={{ backgroundColor: 'transparent' }}
       {...props}
     >
       <Component className={contentClassName} style={contentStyle}>

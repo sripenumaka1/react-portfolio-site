@@ -5,6 +5,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
+import { FaEnvelope, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
   const { isLoading } = usePerformanceMonitor('Contact');
@@ -177,7 +178,9 @@ const Contact = () => {
                 transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className={styles.contactItem}>
-                  <div className={styles.contactIcon}>📧</div>
+                  <div className={styles.contactIcon}>
+                    <FaEnvelope size={24} />
+                  </div>
                   <div>
                     <h3 className={styles.contactLabel}>Email</h3>
                     <a href="mailto:sridattapenumaka@gmail.com" className={styles.contactValue}>
@@ -187,21 +190,37 @@ const Contact = () => {
                 </div>
                 
                 <div className={styles.contactItem}>
-                  <div className={styles.contactIcon}>💼</div>
+                  <div className={styles.contactIcon}>
+                    <FaLinkedin size={24} />
+                  </div>
                   <div>
                     <h3 className={styles.contactLabel}>LinkedIn</h3>
                     <a href="https://www.linkedin.com/in/sri-datta-penumaka-693143328/" className={styles.contactValue} target="_blank" rel="noopener noreferrer">
-                      Connect with me
+                      linkedin.com/in/sri-datta-penumaka-693143328
                     </a>
                   </div>
                 </div>
                 
                 <div className={styles.contactItem}>
-                  <div className={styles.contactIcon}>💻</div>
+                  <div className={styles.contactIcon}>
+                    <FaGithub size={24} />
+                  </div>
                   <div>
                     <h3 className={styles.contactLabel}>GitHub</h3>
                     <a href="https://github.com/sripenumaka1" className={styles.contactValue} target="_blank" rel="noopener noreferrer">
-                      View my code
+                      github.com/sripenumaka1
+                    </a>
+                  </div>
+                </div>
+                
+                <div className={styles.contactItem}>
+                  <div className={styles.contactIcon}>
+                    <FaInstagram size={24} />
+                  </div>
+                  <div>
+                    <h3 className={styles.contactLabel}>Instagram</h3>
+                    <a href="https://www.instagram.com/sri.d06/" className={styles.contactValue} target="_blank" rel="noopener noreferrer">
+                      instagram.com/sri.d06
                     </a>
                   </div>
                 </div>

@@ -7,7 +7,7 @@ const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.left}>
       <div className={styles.tagline}>
-        Minimalist designer creating functional and meaningful digital experiences.
+        live, love, and create.
       </div>
       <div className={styles.email}>sridattapenumaka@gmail.com</div>
     </div>

@@ -1001,10 +1001,10 @@ body, html {
 /* Individual orbiting project */
 .orbitingProject {
   position: absolute;
-  width: 160px;
-  height: 160px;
-  margin-left: -80px;
-  margin-top: -80px;
+  width: 220px;
+  height: 220px;
+  margin-left: -110px;
+  margin-top: -110px;
   cursor: pointer;
   pointer-events: auto;
   z-index: 3;
@@ -1035,28 +1035,29 @@ body, html {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(8px);
+  transform: translateX(-50%) translateY(12px);
   width: max-content;
-  max-width: 180px;
-  padding: 8px 14px;
+  max-width: 200px;
+  padding: 10px 16px;
   background: var(--bg-secondary);
   border: 1px solid var(--color-gray-400);
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 20;
+  white-space: nowrap;
 }
 
 .orbitingProjectTitle {
   color: var(--text-primary);
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
   text-align: center;
   line-height: 1.3;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .orbitingProject:hover .orbitingProjectInner {
@@ -1072,6 +1073,7 @@ body, html {
 .orbitingProject:hover .orbitingProjectOverlay {
   opacity: 1;
   transform: translateX(-50%) translateY(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Project Modal */
@@ -1088,7 +1090,9 @@ body, html {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 24px;
+  padding: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .projectModalContent {
@@ -1096,20 +1100,24 @@ body, html {
   border-radius: 24px;
   max-width: 800px;
   width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
+  max-height: 95vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4),
               0 0 60px rgba(191, 161, 74, 0.3);
   border: 1px solid var(--color-gray-400);
+  -webkit-overflow-scrolling: touch;
 }
 
 .modalClose {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   background: var(--bg-tertiary);
   border: 1px solid var(--color-gray-400);
@@ -1121,6 +1129,7 @@ body, html {
   justify-content: center;
   transition: all 0.2s ease;
   z-index: 10;
+  touch-action: manipulation;
 }
 
 .modalClose:hover {
@@ -1185,24 +1194,46 @@ body, html {
   border: 2px solid;
 }
 
+.modalButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .modalButton {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 14px 28px;
+  min-height: 44px;
+  min-width: 44px;
   border-radius: 12px;
-  color: white;
+  color: white !important;
   font-size: 16px;
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  touch-action: manipulation;
 }
 
 .modalButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: white !important;
+}
+
+.modalButton:hover * {
+  color: white !important;
+}
+
+.modalButtonDemo {
+  opacity: 0.9;
+}
+
+.modalButtonDemo:hover {
+  opacity: 1;
 }
 
 /* Orbital responsive */
@@ -1227,10 +1258,14 @@ body, html {
   }
   
   .orbitingProject {
-    width: 110px;
-    height: 110px;
-    margin-left: -55px;
-    margin-top: -55px;
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    margin-top: -75px;
+  }
+  
+  .orbitingProjectTitle {
+    font-size: 12px;
   }
   
   .modalImageWrapper {
@@ -1243,6 +1278,32 @@ body, html {
   
   .modalInfo {
     padding: 24px;
+  }
+  
+  .modalButtons {
+    flex-direction: column;
+  }
+  
+  .modalButton {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+  
+  .modalClose {
+    width: 44px;
+    height: 44px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  .projectModal {
+    padding: 8px;
+  }
+  
+  .projectModalContent {
+    border-radius: 16px;
+    max-height: 98vh;
   }
 }
 
@@ -1267,14 +1328,14 @@ body, html {
   }
   
   .orbitingProject {
-    width: 85px;
-    height: 85px;
-    margin-left: -42px;
-    margin-top: -42px;
+    width: 120px;
+    height: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
   }
-  
+
   .orbitingProjectTitle {
-    font-size: 9px;
+    font-size: 11px;
   }
   
   .modalImageWrapper {
