@@ -232,6 +232,10 @@
   justify-content: center;
 }
 
+[data-theme="dark"] .submitButton {
+  color: #1A1A1A;
+}
+
 .submitButton:hover:not(:disabled) {
   background: var(--color-primary);
   transform: translateY(-1px);
@@ -254,6 +258,11 @@
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
+}
+
+[data-theme="dark"] .spinner {
+  border: 2px solid rgba(26, 26, 26, 0.3);
+  border-top-color: #1A1A1A;
 }
 
 @keyframes spin {

@@ -29,9 +29,21 @@ export default function FloatingGoku() {
       <motion.div
         className={styles.goku}
         style={{ backgroundImage: `url(${gokuImg})` }}
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: 1,
+          y: [0, -20, 0]
+        }}
+        transition={{ 
+          opacity: { duration: 1.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+          y: { 
+            duration: 3, 
+            repeat: Infinity, 
+            repeatType: 'loop',
+            ease: 'easeInOut',
+            delay: 1.5
+          }
+        }}
       />
     </div>
   );

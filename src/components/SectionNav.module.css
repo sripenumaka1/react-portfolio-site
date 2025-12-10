@@ -1,0 +1,123 @@
+.sectionNav {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  z-index: 100;
+  background: var(--bg-secondary);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 16px;
+  padding: 12px 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sectionNav.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.navContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.navItem:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.navItem.active {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.activeIndicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: #D4AF7A;
+  border-radius: 0 2px 2px 0;
+}
+
+.navLabel {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile: Horizontal navigation at top */
+@media (max-width: 1000px) {
+  .sectionNav {
+    top: 80px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 600px;
+    padding: 8px;
+  }
+
+  .navContent {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .navContent::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navItem {
+    padding: 8px 12px;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .activeIndicator {
+    width: 100%;
+    height: 3px;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    border-radius: 2px 2px 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .sectionNav {
+    top: 70px;
+    width: calc(100% - 20px);
+    padding: 6px;
+  }
+
+  .navItem {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+

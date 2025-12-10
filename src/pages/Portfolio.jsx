@@ -14,7 +14,7 @@ import lumoraCircleImg from '../assets/images/LumoraCircle.png';
 import lumoraBrownImg from '../assets/images/LumoraBrown.png';
 import sskdImg from '../assets/images/SSKD (2).png';
 import sskdOrangeImg from '../assets/images/SSKDOrange.png';
-import floatingGokuImg from '../assets/images/floating-goku.png';
+import floatingGokuImg from '../assets/images/gokuinspace.png';
 import studyBuddyImg from '../assets/images/studybuddy.png';
 import studyBuddyModalImg from '../assets/images/StudyBuddyBlue.png';
 
@@ -268,17 +268,17 @@ const Portfolio = () => {
         <section className="orbitalSection">
           <motion.h2 
             className="projectsTitle"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0, ease: 'easeOut' }}
           >My Portfolio</motion.h2>
           <motion.p 
             className="orbitalSubtitle"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >Click on a project to explore</motion.p>
           
           <div className="orbitalContainer">
@@ -353,9 +353,9 @@ const Portfolio = () => {
             {/* Center Profile Image */}
             <motion.div
               className="orbitalCenter"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
             >
               <motion.img
                 src={profileImg}
@@ -393,15 +393,13 @@ const Portfolio = () => {
                       left: `calc(50% + ${pos.x}px)`,
                       top: `calc(50% + ${pos.y}px)`,
                     }}
-                    initial={{ scale: 0, opacity: 0 }}
+                    initial={{ opacity: 0 }}
                     animate={{ 
-                      scale: 1, 
                       opacity: 1,
                       rotate: isPaused ? 0 : -360,
                     }}
                     transition={{
-                      scale: { duration: 0.5, delay: 0.3 + index * 0.1 },
-                      opacity: { duration: 0.5, delay: 0.3 + index * 0.1 },
+                      opacity: { duration: 0.6, delay: 0.4 + index * 0.1, ease: 'easeOut' },
                       rotate: { duration: 30, repeat: Infinity, ease: 'linear' },
                     }}
                     whileHover={{ 

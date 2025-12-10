@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './About.module.css';
 import profileImg from '../assets/images/profile.jpg';
+import resumePdf from '../assets/Sri Penumaka Resume.pdf';
 import { motion } from 'framer-motion';
 import ScrollReveal from "../components/ScrollReveal";
 import { FaBasketballBall, FaFutbol, FaMusic, FaDumbbell, FaDownload } from 'react-icons/fa';
@@ -199,7 +200,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
-            href="/assets/resume.pdf"
+            href={resumePdf}
             download="SriPenumaka_Resume.pdf"
             className={styles.resumeButton}
             whileHover={{ scale: 1.05 }}

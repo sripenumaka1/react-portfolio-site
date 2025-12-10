@@ -1,0 +1,32 @@
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+[data-theme="dark"] .preloader {
+  background-color: #0B1120; /* Dark blue background */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #8B5C2A;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+[data-theme="dark"] .spinner {
+  border: 3px solid white;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+

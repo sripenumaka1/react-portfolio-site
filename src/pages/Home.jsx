@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ScrollReveal from "../components/ScrollReveal";
 import { Link } from "react-router-dom";
 // import heroImg from '../assets/images/hero.jpg'; // Remove static image
 import lumoraImg from '../assets/images/Lumora.png';
 import sskdImg from '../assets/images/SSKD (2).png';
-import { useRef } from 'react';
 import { FaCode, FaPaintBrush, FaReact } from 'react-icons/fa';
+import { SiFigma, SiJavascript, SiReact } from 'react-icons/si';
 import { usePerformanceMonitor } from '../utils/performance';
 import LoadingBar from '../components/LoadingBar';
 import SEO from '../components/SEO';
@@ -65,22 +65,57 @@ const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
   opacity: getRandom(0.12, 0.25),
 }));
 
-function Typewriter({ text, speed = 80, ...props }) {
-  const [displayed, setDisplayed] = useState('');
-  const [done, setDone] = useState(false);
-  useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayed(text.slice(0, i + 1));
-      i++;
-      if (i === text.length) {
-        clearInterval(interval);
-        setDone(true);
-      }
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed]);
-  return <span {...props}>{displayed}{!done && <span className="type-cursor">|</span>}</span>;
+// Letter fade-in variants
+const letterFadeVariants = {
+  hidden: { 
+    opacity: 0,
+  },
+  visible: { 
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1], // Smooth cinematic easing
+    }
+  }
+};
+
+const letterContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12, // Delay between each letter
+      delayChildren: 0.2, // Initial delay
+    }
+  }
+};
+
+function CinematicFadeIn({ text, ...props }) {
+  return (
+    <motion.span
+      {...props}
+      variants={letterContainerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{
+        display: 'inline-flex',
+        whiteSpace: 'nowrap',
+        ...props.style
+      }}
+    >
+      {text.split('').map((char, index) => (
+        <motion.span
+          key={index}
+          variants={letterFadeVariants}
+          style={{
+            display: 'inline-block',
+            whiteSpace: char === ' ' ? 'pre' : 'normal',
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
 }
 
 // Use global ScrollReveal component instead of local implementation
@@ -156,6 +191,97 @@ export default function Home() {
               }}
             />
           ))}
+        </motion.div>
+        
+        {/* Large corner icons - Figma (bottom left), JavaScript (bottom right), React (top right) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 1, delay: 0.5, hover: { duration: 0.3 } }}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            zIndex: 1,
+            pointerEvents: 'auto',
+            overflow: 'hidden',
+            width: '280px',
+            height: '280px',
+            cursor: 'default',
+          }}
+        >
+          <SiFigma 
+            size={280} 
+            style={{
+              position: 'absolute',
+              bottom: '-40px',
+              left: '-40px',
+              color: isDark ? 'var(--text-primary)' : '#6B7280',
+              opacity: isDark ? 0.5 : 0.45,
+              transform: 'rotate(-15deg)',
+            }}
+          />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 1, delay: 0.7, hover: { duration: 0.3 } }}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            zIndex: 1,
+            pointerEvents: 'auto',
+            overflow: 'hidden',
+            width: '280px',
+            height: '280px',
+            cursor: 'default',
+          }}
+        >
+          <SiJavascript 
+            size={280} 
+            style={{
+              position: 'absolute',
+              bottom: '-40px',
+              right: '-40px',
+              color: isDark ? 'var(--text-primary)' : '#6B7280',
+              opacity: isDark ? 0.5 : 0.45,
+              transform: 'rotate(25deg)',
+            }}
+          />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 1, delay: 0.6, hover: { duration: 0.3 } }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            zIndex: 1,
+            pointerEvents: 'auto',
+            overflow: 'hidden',
+            width: '250px',
+            height: '250px',
+            cursor: 'default',
+          }}
+        >
+          <SiReact 
+            size={250} 
+            style={{
+              position: 'absolute',
+              top: '-60px',
+              right: '-60px',
+              color: isDark ? 'var(--text-primary)' : '#6B7280',
+              opacity: isDark ? 0.35 : 0.3,
+              transform: 'rotate(-20deg)',
+            }}
+          />
         </motion.div>
         <div
           style={{
@@ -234,9 +360,9 @@ export default function Home() {
                 ease: "easeInOut"
               }}
               style={{
-                fontSize: "clamp(3.5rem, 8vw, 5.5rem)",
-                fontFamily: "'Rubik', sans-serif",
-                fontWeight: 600,
+                fontSize: "clamp(4rem, 9vw, 6.5rem)",
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 900,
                 color: 'var(--text-primary)',
                 margin: 0,
                 lineHeight: 1.08,
@@ -250,14 +376,14 @@ export default function Home() {
               }}
               className="hero-name-glow"
             >
-              {showName && <Typewriter text={"SRI PENUMAKA"} speed={60} />}
+              {showName && <CinematicFadeIn text={"SRI PENUMAKA"} />}
             </motion.h1>
           </div>
           {/* Tagline - fade in after name */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 2.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.2, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontSize: "1.5rem",
               fontFamily: "Rubik, sans-serif",
@@ -275,7 +401,7 @@ export default function Home() {
           <motion.button
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 3.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.2, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ scale: 1.05 }}
             style={{
               background: "var(--color-dark)",
